@@ -66,7 +66,7 @@ fi
 if [ "$color_prompt" = yes ]; then
   PS1='${debian_chroot:+($debian_chroot)}\[\e[0;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[0;36m\]$(__git_ps1 " (%s)")\[\e[00m\]\r\n\$ '
 else
-  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(parse_git_branch)\r\n\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 " (%s)")\r\n\$ '
 fi
 unset color_prompt force_color_prompt
 
