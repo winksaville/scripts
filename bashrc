@@ -48,6 +48,11 @@ esac
 # Get shawn's git-prompt.sh which I copied from ~/foss/git/contrib/completion/git-prompt.sh
 source ~/bin/git-prompt.sh
 
+# Turn on various GIT_PS1 flags
+GIT_PS1_DESCRIBE_STYLE=branch
+GIT_PS1_SHOWCOLORHINTS=yes
+GIT_PS1_HIDE_IF_PWD_IGNORED=yes
+
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
