@@ -45,11 +45,8 @@ case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
 
-# Get the current git branch
-parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-
+# Get shawn's git-prompt.sh which I copied from ~/foss/git/contrib/completion/git-prompt.sh
+source ~/bin/git-prompt.sh
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
@@ -67,7 +64,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 if [ "$color_prompt" = yes ]; then
-  PS1='${debian_chroot:+($debian_chroot)}\[\e[0;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[0;36m\]$(parse_git_branch)\[\e[00m\]\r\n\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\[\e[0;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[0;36m\]$(__git_ps1 " (%s)")\[\e[00m\]\r\n\$ '
 else
   PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(parse_git_branch)\r\n\$ '
 fi
