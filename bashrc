@@ -4,8 +4,9 @@
 
 set -o vi
 
-# Add git-complettion for bash
+# Add git-completion for bash
 source /etc/bash_completion.d/git-completion.bash
+source ~/scripts/git-stree-completion.bash
 
 # If not running interactively, don't do anything
 case $- in
