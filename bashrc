@@ -129,11 +129,31 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export GOPATH="/home/wink/prgs/go"
+# I'm paranoid don't have a trailing ':' if LD_LIBRARY_PATH is empty
+if [ "$LD_LIBRARY_PATH" = "" ]; then
+    export LD_LIBRARY_PATH="/usr/local/lib"
+else
+    export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
+fi
+export LD_LIBRARY_PATH="/opt/protobuf-master/lib:$LD_LIBRARY_PATH"
 
+export GOPATH="/home/wink/prgs/go"
+export GOBIN="/home/wink/prgs/go/bin"
+export GOROOT="/home/wink/foss/go"
+export GOROOT_FINAL="/opt/go/bin"
+
+export PATH="/home/wink/bin:$PATH"
 export PATH="/opt/Xilinx/Vivado/2014.4/bin:$PATH"
 export PATH="/opt/scala-2.11.5/bin:$PATH"
 export PATH="/opt/sbt/bin:$PATH"
 export PATH="/opt/nim/bin:$PATH"
 export PATH="/opt/eclipse:$PATH"
+export PATH="/opt/clion-141.2144/bin:$PATH"
+export PATH="/opt/CMake/bin:$PATH"
+export PATH="/opt/go/bin:$PATH"
+export PATH="/opt/jdk1.7.0_79/bin:$PATH"
+export PATH="/opt/android-studio1.3/bin:$PATH"
+export PATH="/opt/protobuf-master/bin:$PATH"
+export PATH="/home/wink/prgs/go/bin:$PATH"
 export PATH="/home/wink/.nimble/bin:$PATH"
+export PATH="/home/wink/Android/Sdk/platform-tools:$PATH"
