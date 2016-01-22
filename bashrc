@@ -128,6 +128,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
+multiple-file-vim() {
+  vim -p $*
+}
+alias vi=multiple-file-vim
+alias vim=multiple-file-vim
+
 # I'm paranoid don't have a trailing ':' if LD_LIBRARY_PATH is empty
 #if [ "$LD_LIBRARY_PATH" = "" ]; then
 #    export LD_LIBRARY_PATH="/usr/local/lib"
