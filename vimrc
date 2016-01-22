@@ -1,12 +1,12 @@
 execute pathogen#infect()
 " set shortmess=aoOTI
+
 syntax on
 set number
 set mouse=a
 set shiftwidth=2
 set softtabstop=2
 
-tab all
 set tabpagemax=20
 set showtabline=1
 
