@@ -36,3 +36,6 @@ endf
 " Jump to tag
 nn <M-g> :call JumpToDef()<cr>
 ino <M-g> <esc>:call JumpToDef()<cr>i
+
+" Change the matching highlighting
+hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
