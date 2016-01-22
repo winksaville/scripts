@@ -4,15 +4,15 @@
 
 set -o vi
 
-# Add git-completion for bash
-source /etc/bash_completion.d/git-completion.bash
-source ~/scripts/git-stree-completion.bash
+# Add git-completion and prompt for bash
+source ~/scripts/git-completion.bash
+source ~/scripts/git-prompt.sh
+#source ~/scripts/git-stree-completion.bash
+
+eval `keychain --nogui --eval id_rsa`
 
 # If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+[[ $- != *i* ]] && return
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -46,9 +46,6 @@ case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
 
-# Get shawn's git-prompt.sh which I copied from ~/foss/git/contrib/completion/git-prompt.sh
-source ~/bin/git-prompt.sh
-
 # Turn on various GIT_PS1 flags
 GIT_PS1_DESCRIBE_STYLE=branch
 GIT_PS1_SHOWCOLORHINTS=yes
@@ -75,6 +72,8 @@ else
   PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 " (%s)")\r\n\$ '
 fi
 unset color_prompt force_color_prompt
+
+#PS1='[\u@\h \W$(__git_ps1 " (%s)")]\n\$ '
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -130,30 +129,24 @@ if ! shopt -oq posix; then
 fi
 
 # I'm paranoid don't have a trailing ':' if LD_LIBRARY_PATH is empty
-if [ "$LD_LIBRARY_PATH" = "" ]; then
-    export LD_LIBRARY_PATH="/usr/local/lib"
-else
-    export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
-fi
-export LD_LIBRARY_PATH="/opt/protobuf-master/lib:$LD_LIBRARY_PATH"
+#if [ "$LD_LIBRARY_PATH" = "" ]; then
+#    export LD_LIBRARY_PATH="/usr/local/lib"
+#else
+#    export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
+#fi
+#export LD_LIBRARY_PATH="/opt/protobuf-master/lib:$LD_LIBRARY_PATH"
 
-export GOPATH="/home/wink/prgs/go"
-export GOBIN="/home/wink/prgs/go/bin"
-export GOROOT="/home/wink/foss/go"
-export GOROOT_FINAL="/opt/go/bin"
+#export GOPATH="/home/wink/prgs/go"
+#export GOBIN="/home/wink/prgs/go/bin"
+#export GOROOT="/home/wink/foss/go"
+#export GOROOT_FINAL="/opt/go/bin"
 
-export PATH="/home/wink/bin:$PATH"
-export PATH="/opt/Xilinx/Vivado/2014.4/bin:$PATH"
-export PATH="/opt/scala-2.11.5/bin:$PATH"
-export PATH="/opt/sbt/bin:$PATH"
-export PATH="/opt/nim/bin:$PATH"
-export PATH="/opt/eclipse:$PATH"
-export PATH="/opt/clion-141.2144/bin:$PATH"
-export PATH="/opt/CMake/bin:$PATH"
-export PATH="/opt/go/bin:$PATH"
-export PATH="/opt/jdk1.7.0_79/bin:$PATH"
-export PATH="/opt/android-studio1.3/bin:$PATH"
-export PATH="/opt/protobuf-master/bin:$PATH"
-export PATH="/home/wink/prgs/go/bin:$PATH"
-export PATH="/home/wink/.nimble/bin:$PATH"
-export PATH="/home/wink/Android/Sdk/platform-tools:$PATH"
+export SYSTEMD_EDITOR="vim"
+
+export PATH="$HOME/opt/x-tools/x86_64-unknown-elf/bin:$PATH"
+export PATH="$HOME/opt/x-tools/i386-unknown-elf/bin:$PATH"
+export PATH="$HOME/opt/x-tools/arm-unknown-eabi/bin:$PATH"
+export PATH="$HOME/opt/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
+#export PATH="$HOME/Android/android-studio/bin:$PATH"
+#export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
