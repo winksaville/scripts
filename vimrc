@@ -1,23 +1,23 @@
 execute pathogen#infect()
 " set shortmess=aoOTI
 
+set cmdheight=1
+
 syntax on
 set number
 set mouse=a
 set shiftwidth=2
-set softtabstop=2
+"set softtabstop=2
+set expandtab
 
 set tabpagemax=20
 set showtabline=1
 
-" Syntastic suggested values
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" Add full file path to status line
+set statusline+=%<%F\ %h%m%r%y%=%-14.(%l,%c%V%)\ %P
+set laststatus=2
+
+set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)\ -\ %{v:servername}
 
 " using clang-format mapped
 map <C-I> :pyf ~/scripts/clang-format.py
@@ -39,3 +39,4 @@ ino <M-g> <esc>:call JumpToDef()<cr>i
 
 " Change the matching highlighting
 hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
+
