@@ -4,6 +4,9 @@
 
 set -o vi
 
+# Add Command not found hook so pkgfile is used to teill where it is
+source /usr/share/doc/pkgfile/command-not-found.bash
+
 # Add git-completion and prompt for bash
 source ~/scripts/git-completion.bash
 source ~/scripts/git-prompt.sh
@@ -148,11 +151,15 @@ alias vim=multiple-file-vim
 #export GOROOT_FINAL="/opt/go/bin"
 
 export SYSTEMD_EDITOR="vim"
+export VISUAL="vim"
 
 export PATH="$HOME/opt/x-tools/x86_64-unknown-elf/bin:$PATH"
 export PATH="$HOME/opt/x-tools/i386-unknown-elf/bin:$PATH"
 export PATH="$HOME/opt/x-tools/arm-unknown-eabi/bin:$PATH"
 export PATH="$HOME/opt/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/foss/meson:$PATH"
+export PATH="$HOME/.gem/ruby/2.3.0/bin:$PATH"
+export PATH="$HOME/foss/southwest-checkin/vendor/bundle/ruby/2.3.0/bin:$PATH"
 #export PATH="$HOME/Android/android-studio/bin:$PATH"
 #export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
