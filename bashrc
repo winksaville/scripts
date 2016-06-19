@@ -57,6 +57,9 @@ GIT_PS1_HIDE_IF_PWD_IGNORED=yes
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
+#
+# Paste the code below to see some color choices:
+#     for C in {32..47}; do echo -en "\e[0;${C}m$C "; done
 force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
