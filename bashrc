@@ -12,6 +12,9 @@ source ~/scripts/git-completion.bash
 source ~/scripts/git-prompt.sh
 #source ~/scripts/git-stree-completion.bash
 
+# Add ninja completion
+source ~/scripts/ninja-bash-completion
+
 eval `keychain --nogui --eval id_rsa`
 
 # If not running interactively, don't do anything
