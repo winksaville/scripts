@@ -164,8 +164,9 @@ export PATH="$HOME/opt/x-tools/i386-unknown-elf/bin:$PATH"
 export PATH="$HOME/opt/x-tools/arm-unknown-eabi/bin:$PATH"
 export PATH="$HOME/opt/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
-export PATH="$HOME/foss/meson:$PATH"
-export PATH="$HOME/.gem/ruby/2.3.0/bin:$PATH"
-export PATH="$HOME/foss/southwest-checkin/vendor/bundle/ruby/2.3.0/bin:$PATH"
 #export PATH="$HOME/Android/android-studio/bin:$PATH"
 #export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
+
+# Update PYTHONPATH, this is needed for meson
+export PYTHONPATH=/home/wink/opt/lib/python3.5/site-packages:$PYTHONPATH
+
