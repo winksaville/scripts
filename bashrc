@@ -8,7 +8,8 @@
 set -o vi
 
 # Add Command not found hook so pkgfile is used to teill where it is
-source /usr/share/doc/pkgfile/command-not-found.bash
+command_not_found_file="/usr/share/doc/pkgfile/command-not-found.bash"
+[ -f "$command_not_found_file" ] && source "$command_not_found_file"
 
 # Add git-completion and prompt for bash
 source ~/scripts/git-completion.bash
@@ -18,7 +19,7 @@ source ~/scripts/git-prompt.sh
 # Add ninja completion
 source ~/scripts/ninja-bash-completion
 
-eval `keychain --nogui --eval id_rsa`
+command -v keychain > /dev/null 2>&1 && eval `keychain --nogui --eval id_rsa`
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -40,7 +41,7 @@ shopt -s checkwinsize
 shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+command -v lesspipe > /dev/null 2>&1 && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
@@ -63,17 +64,18 @@ GIT_PS1_HIDE_IF_PWD_IGNORED=yes
 #
 # Paste the code below to see some color choices:
 #     for C in {32..47}; do echo -en "\e[0;${C}m$C "; done
-force_color_prompt=yes
 
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
+force_color_prompt=yes
+if [ -z "$force_color_prompt" ]; then
+    command -v tput > /dev/null 2>&1
+    if (( $? == 0 )); then
+       # We have color support; assume it's compliant with Ecma-48
+       # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+       # a case would tend to support setf rather than setaf.)
+       [ tput setaf 1 >&/dev/null ] && color_prompt=yes || color_prompt=
     fi
+else
+    color_prompt=yes
 fi
 if [ "$color_prompt" = yes ]; then
   PS1='${debian_chroot:+($debian_chroot)}\[\e[0;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[0;36m\]$(__git_ps1 " (%s)")\[\e[00m\]\r\n\$ '
@@ -94,7 +96,9 @@ xterm*|rxvt*)
 esac
 
 # enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
+command -v dircolors > /dev/null 2>&1
+if (( $? == 0 )); then
+
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
@@ -159,14 +163,25 @@ alias vim=multiple-file-vim
 export SYSTEMD_EDITOR="vim"
 export VISUAL="vim"
 
-export PATH="$HOME/opt/x-tools/x86_64-unknown-elf/bin:$PATH"
-export PATH="$HOME/opt/x-tools/i386-unknown-elf/bin:$PATH"
-export PATH="$HOME/opt/x-tools/arm-unknown-eabi/bin:$PATH"
-export PATH="$HOME/opt/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
-#export PATH="$HOME/Android/android-studio/bin:$PATH"
-#export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
+prepend_path() {
+  [ -z "$2" ] && path=PATH || path=$2
+  dlr_path="\$$path"
+  #echo pp path=$path
+  #echo pp dlr_path=$dlr_path
+  eval_dlr_path=$(eval "echo $dlr_path")
+  #echo eval_ldr_path=$eval_dlr_path
+  [ -z  "$eval_dlr_path" ] && eval "export $path=$1" || eval "export $path=$1:$dlr_path"
+}
+prepend_path_if_exists() {
+  [ -d "$1" ] && prepend_path $1 $2
+}
+prepend_path_if_exists "$HOME/opt/x-tools/i386-unknown-elf/bin"
+prepend_path_if_exists "$HOME/opt/x-tools/arm-unknown-eabi/bin"
+prepend_path_if_exists "$HOME/opt/bin"
+prepend_path_if_exists "$HOME/bin"
+prepend_path_if_exists "$HOME/Android/android-studio/bin"
+prepend_path_if_exists "$HOME/Android/Sdk/platform-tools"
 
 # Update PYTHONPATH, this is needed for meson
-export PYTHONPATH=/home/wink/opt/lib/python3.5/site-packages:$PYTHONPATH
+prepend_path /home/wink/opt/lib/python3.5/site-packages PYTHONPATH
 
