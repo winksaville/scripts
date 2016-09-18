@@ -19,6 +19,10 @@ set laststatus=2
 
 set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)\ -\ %{v:servername}
 
+" Allow %% to be use to reference a files directory
+" such as ':tabe %%'
+cabbr <expr> %% expand('%:p:h')
+
 " using clang-format mapped
 map <C-I> :pyf ~/scripts/clang-format.py
 "imap <C-I> <c-o>:pyf ~/scripts/clang-format.py
