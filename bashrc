@@ -2,6 +2,10 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+export _BASHRC_X=1
+
+shopt -s expand_aliases
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -141,11 +145,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-multiple-file-vim() {
-  vim -p $*
-}
-alias vi=multiple-file-vim
-alias vim=multiple-file-vim
+alias sudo='sudo '
+alias vi='vim -p $*'
+alias vim='vim -p $*'
 
 # I'm paranoid don't have a trailing ':' if LD_LIBRARY_PATH is empty
 #if [ "$LD_LIBRARY_PATH" = "" ]; then
