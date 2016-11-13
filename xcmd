@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+echo "xcmd proc_id=$1"
+sleep $[RANDOM % 5]
+echo "Done $1"
