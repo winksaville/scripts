@@ -165,6 +165,15 @@ alias vim='vim -p $*'
 export SYSTEMD_EDITOR="vim"
 export VISUAL="vim"
 
+append_path() {
+  [ -z "$2" ] && path=PATH || path=$2
+  dlr_path="\$$path"
+  #echo pp path=$path
+  #echo pp dlr_path=$dlr_path
+  eval_dlr_path=$(eval "echo $dlr_path")
+  #echo eval_ldr_path=$eval_dlr_path
+  [ -z  "$eval_dlr_path" ] && eval "export $path=$1" || eval "export $path=$dlr_path:$1"
+}
 prepend_path() {
   [ -z "$2" ] && path=PATH || path=$2
   dlr_path="\$$path"
@@ -187,3 +196,7 @@ prepend_path_if_exists "$HOME/Android/Sdk/platform-tools"
 # Update PYTHONPATH, this is needed for meson
 prepend_path /home/wink/opt/lib/python3.5/site-packages PYTHONPATH
 
+append_path /home/wink/foss/depot_tools
+
+export NVM_DIR="/home/wink/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
