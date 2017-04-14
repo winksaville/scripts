@@ -196,6 +196,12 @@ prepend_path_if_exists "$HOME/Android/Sdk/platform-tools"
 # Update PYTHONPATH, this is needed for meson
 prepend_path /home/wink/opt/lib/python3.5/site-packages PYTHONPATH
 
+# Allow "local" node module to be executed
+prepend_path "./node_modules/.bin"
+
+# Emscripten support
+prepend_path_if_exists "$HOME/foss/emscripten"
+
 append_path /home/wink/foss/depot_tools
 
 export NVM_DIR="/home/wink/.nvm"
