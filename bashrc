@@ -165,6 +165,11 @@ alias vim='vim -p $*'
 export SYSTEMD_EDITOR="vim"
 export VISUAL="vim"
 
+# NODE & NPM env variables
+NPM_GLOBAL="$HOME/.npm-global"
+#MANPATH="$NPM_GLOBAL/share/man:$(manpath)"
+NODE_PATH="$NPM_GLOBAL/lib/node_modules:$NODE_PATH"
+
 append_path() {
   [ -z "$2" ] && path=PATH || path=$2
   dlr_path="\$$path"
@@ -192,6 +197,7 @@ prepend_path_if_exists "$HOME/opt/bin"
 prepend_path_if_exists "$HOME/bin"
 prepend_path_if_exists "$HOME/Android/android-studio/bin"
 prepend_path_if_exists "$HOME/Android/Sdk/platform-tools"
+prepend_path_if_exists "$NPM_GLOBAL/bin"
 
 # Update PYTHONPATH, this is needed for meson
 prepend_path /home/wink/opt/lib/python3.5/site-packages PYTHONPATH
@@ -201,6 +207,9 @@ prepend_path "./node_modules/.bin"
 
 # Emscripten support
 prepend_path_if_exists "$HOME/foss/emscripten"
+
+# binaryen
+prepend_path_if_exists "$HOME/foss/binaryen/bin"
 
 append_path /home/wink/foss/depot_tools
 
