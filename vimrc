@@ -1,5 +1,18 @@
-execute pathogen#infect()
+"execute pathogen#infect()
 " set shortmess=aoOTI
+
+" Use vim-plug as plugin manager
+"    https://github.com/junegunn/vim-plug
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+" Make sure you use single quotes
+
+Plug 'elmcast/elm-vim'
+
+call plug#end()
 
 set cmdheight=1
 
@@ -14,16 +27,16 @@ set tabpagemax=20
 set showtabline=1
 
 " Add full file path to status line
-set statusline+=%<%F\ %h%m%r%y%=%-14.(%l,%c%V%)\ %P
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%<%F\ %h%m%r%y%=%-14.(%l,%c%V%)\ %P
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['python']
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_python_checkers = ['python']
 
 set laststatus=2
 
