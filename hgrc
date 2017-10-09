@@ -1,0 +1,52 @@
+[ui]
+# enter your real name and change 'email.address@edf.fr' by your email address
+username = Wink Saville <wink@saville.com>
+editor = gvim
+merge = meld
+
+[web]
+cacerts = /etc/ssl/certs/ca-certificates.crt
+
+[progress]
+delay = 1.5
+
+[merge-tools]
+meld.args = $base $local $other
+#meld.executable = ...../meld_wrapper
+
+[extensions]
+color =
+rebase =
+purge =
+mq =
+extdiff =
+graphlog =
+histedit =
+patchbomb =
+hgext.imerge=!
+hgext.inotify=!
+
+[aster]
+#translation = false
+#test.nbmaxnook = 5
+#test.facmtps = 5.2
+#check.submit = warn
+#outputdir = /tmp/xxx
+
+[alias]
+lg = log -G --template="{rev}:{node|short} {branch}: {desc|firstline} <{author|email}> ({phase})\n"
+ll = lg -l 12
+
+[extdiff]
+cmd.meld =
+
+[color]
+status.modified = magenta bold
+status.added = green bold
+status.removed = red bold
+status.deleted = cyan bold
+status.unknown = blue bold
+status.ignored = black bold
+qseries.applied = blue bold underline
+qseries.unapplied = black bold
+qseries.missing = red bold
