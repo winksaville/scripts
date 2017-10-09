@@ -202,6 +202,12 @@ prepend_path_if_exists "$NPM_GLOBAL/bin"
 # Update PYTHONPATH, this is needed for meson
 prepend_path /home/wink/opt/lib/python3.5/site-packages PYTHONPATH
 
+# Update PYTHONPATH, for code-aster
+#  NOTE: we may want to use sys.path see:
+#   https://stackoverflow.com/questions/34632870/how-to-set-pythonpath-differently-for-version-2-and-3
+#   https://docs.python.org/2.7/library/site.html
+prepend_path /lib/python2.7/site-packages PYTHONPATH
+
 # Allow "local" node module to be executed
 prepend_path "./node_modules/.bin"
 
