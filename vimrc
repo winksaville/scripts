@@ -11,6 +11,7 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
 Plug 'elmcast/elm-vim'
+Plug 'https://github.com/jakwings/vim-pony.git'
 
 call plug#end()
 
@@ -19,9 +20,9 @@ set cmdheight=1
 syntax on
 set number
 set mouse=a
-set shiftwidth=2
+"set shiftwidth=2
 "set softtabstop=2
-set expandtab
+"set expandtab
 
 set tabpagemax=20
 set showtabline=1
@@ -50,19 +51,19 @@ cabbr <expr> %% expand('%:p:h')
 map <C-I> :pyf ~/scripts/clang-format.py
 "imap <C-I> <c-o>:pyf ~/scripts/clang-format.py
 
-filetype plugin indent on
+"filetype plugin indent on
 
-fun! JumpToDef()
-  if exists("*GotoDefinition_" . &filetype)
-    call GotoDefinition_{&filetype}()
-  else
-    exe "norm! \<C-]>"
-  endif
-endf
+"fun! JumpToDef()
+"  if exists("*GotoDefinition_" . &filetype)
+"    call GotoDefinition_{&filetype}()
+"  else
+"    exe "norm! \<C-]>"
+"  endif
+"endf
 
 " Jump to tag
-nn <M-g> :call JumpToDef()<cr>
-ino <M-g> <esc>:call JumpToDef()<cr>i
+"nn <M-g> :call JumpToDef()<cr>
+"ino <M-g> <esc>:call JumpToDef()<cr>i
 
 " Change the matching highlighting
 hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
