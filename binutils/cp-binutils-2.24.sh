@@ -1,0 +1,20 @@
+#!/bin/bash
+cp addr2line x86_64-linux-gnu-addr2line-2.24
+cp ar        x86_64-linux-gnu-ar-2.24
+cp as        x86_64-linux-gnu-as-2.24
+cp c++filt   x86_64-linux-gnu-c++filt-2.24
+cp dwp       x86_64-linux-gnu-dwp-2.24
+cp elfedit   x86_64-linux-gnu-elfedit-2.24
+cp gold      x86_64-linux-gnu-gold-2.24
+cp gprof     x86_64-linux-gnu-gprof-2.24
+cp ld        x86_64-linux-gnu-ld-2.24
+cp ld.bfd    x86_64-linux-gnu-ld.bfd-2.24
+cp ld.gold   x86_64-linux-gnu-ld.gold-2.24
+cp nm        x86_64-linux-gnu-nm-2.24
+cp objcopy   x86_64-linux-gnu-objcopy-2.24
+cp objdump   x86_64-linux-gnu-objdump-2.24
+cp ranlib    x86_64-linux-gnu-ranlib-2.24
+cp readelf   x86_64-linux-gnu-readelf-2.24
+cp size      x86_64-linux-gnu-size-2.24
+cp strings   x86_64-linux-gnu-strings-2.24
+cp strip     x86_64-linux-gnu-strip-2.24
