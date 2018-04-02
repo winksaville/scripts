@@ -1,0 +1,14 @@
+[user]
+	email = wink@saville.com
+	name = Wink Saville
+[core]
+	excludesfile = /home/wink/.gitignore
+[color]
+	ui = auto
+[sendemail]
+        smtpEncryption = tls
+        smtpServer = smtp.gmail.com
+        smtpServerPort = 587
+	smtpUser = wink@saville.com
+[credential]
+	helper = store --file /home/wink/.gitcreds
