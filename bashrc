@@ -198,16 +198,22 @@ prepend_path_if_exists "$HOME/opt/x-tools/i386-unknown-elf/bin"
 prepend_path_if_exists "$HOME/opt/x-tools/arm-unknown-eabi/bin"
 prepend_path_if_exists "$HOME/opt/bin"
 prepend_path_if_exists "$HOME/bin"
-prepend_path_if_exists "$HOME/Android/android-studio/bin"
+prepend_path_if_exists "$HOME/Android/Studio/bin"
 prepend_path_if_exists "$HOME/Android/Sdk/platform-tools"
 prepend_path_if_exists "$NPM_GLOBAL/bin"
+#prepend_path_if_exists "$HOME/.local/bin"
 
 # Update PYTHONPATH, this is needed for meson
 prepend_path_if_exists /home/wink/opt/lib/python3.5/site-packages PYTHONPATH
 
+# Update PYTHONPATH, for code-aster
+#  NOTE: we may want to use sys.path see:
+#   https://stackoverflow.com/questions/34632870/how-to-set-pythonpath-differently-for-version-2-and-3
+#   https://docs.python.org/2.7/library/site.html
+#prepend_path /lib/python2.7/site-packages PYTHONPATH
 
 # Allow "local" node module to be executed
-prepend_path_if_exists "./node_modules/.bin"
+prepend_path "./node_modules/.bin"
 
 # Emscripten support
 prepend_path_if_exists "$HOME/foss/emscripten"
@@ -215,7 +221,13 @@ prepend_path_if_exists "$HOME/foss/emscripten"
 # binaryen
 prepend_path_if_exists "$HOME/foss/binaryen/bin"
 
+# pony-0.20 see https://medium.com/@bpdp/latest-pony-in-arch-linux-dea6427bd77f
+#prepend_path_if_exists "$HOME/opt/pony-0.20.0/bin"
+
 append_path /home/wink/foss/depot_tools
 
 export NVM_DIR="/home/wink/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
