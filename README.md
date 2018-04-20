@@ -8,3 +8,5 @@ from github as soon as possible copy:
 - vimrc to ~/.vimrc
 - gpg.conf to ~/.gnupg/
 - dirmngr.conf to ~/.gnupg/
+- gitconfig to ~/.gitconfig
+- gitignore to ~/.gitignore
