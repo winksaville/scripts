@@ -149,14 +149,6 @@ alias sudo='sudo '
 alias vi='vim -p $*'
 alias vim='vim -p $*'
 
-# I'm paranoid don't have a trailing ':' if LD_LIBRARY_PATH is empty
-#if [ "$LD_LIBRARY_PATH" = "" ]; then
-#    export LD_LIBRARY_PATH="/usr/local/lib"
-#else
-#    export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
-#fi
-#export LD_LIBRARY_PATH="/opt/protobuf-master/lib:$LD_LIBRARY_PATH"
-
 #export GOPATH="/home/wink/prgs/go"
 #export GOBIN="/home/wink/prgs/go/bin"
 #export GOROOT="/home/wink/foss/go"
@@ -191,12 +183,10 @@ prepend_path() {
 prepend_path_if_exists() {
   [ -d "$1" ] && prepend_path $1 $2
 }
-append_path_if_exists() {
-  [ -d "$1" ] && append_path $1 $2
-}
 prepend_path_if_exists "$HOME/opt/x-tools/i386-unknown-elf/bin"
 prepend_path_if_exists "$HOME/opt/x-tools/arm-unknown-eabi/bin"
 prepend_path_if_exists "$HOME/opt/bin"
+prepend_path_if_exists "$HOME/llvm-clang/bin"
 prepend_path_if_exists "$HOME/bin"
 prepend_path_if_exists "$HOME/Android/Studio/bin"
 prepend_path_if_exists "$HOME/Android/Sdk/platform-tools"
@@ -204,7 +194,7 @@ prepend_path_if_exists "$NPM_GLOBAL/bin"
 #prepend_path_if_exists "$HOME/.local/bin"
 
 # Update PYTHONPATH, this is needed for meson
-prepend_path_if_exists /home/wink/opt/lib/python3.5/site-packages PYTHONPATH
+prepend_path /home/wink/opt/lib/python3.5/site-packages PYTHONPATH
 
 # Update PYTHONPATH, for code-aster
 #  NOTE: we may want to use sys.path see:
@@ -226,8 +216,15 @@ prepend_path_if_exists "$HOME/foss/binaryen/bin"
 
 append_path /home/wink/foss/depot_tools
 
+# Update LD_LIBRARY_PATH
+prepend_path $HOME/llvm-clang/lib LD_LIBRARY_PATH
+
+
 export NVM_DIR="/home/wink/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# Add docker id
+export DOCKER_ID_USER="winksaville"
