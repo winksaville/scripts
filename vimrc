@@ -20,6 +20,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'elmcast/elm-vim'
 Plug 'https://github.com/jakwings/vim-pony.git'
+Plug 'https://github.com/ziglang/zig.vim.git'
 
 call plug#end()
 
