@@ -216,8 +216,8 @@ prepend_path_if_exists "$HOME/foss/binaryen/bin"
 
 append_path /home/wink/foss/depot_tools
 
-# Update LD_LIBRARY_PATH
-prepend_path $HOME/llvm-clang/lib LD_LIBRARY_PATH
+# For a locally built llvm update LD_LIBRARY_PATH
+#prepend_path $HOME/llvm-clang/lib LD_LIBRARY_PATH
 
 
 export NVM_DIR="/home/wink/.nvm"
