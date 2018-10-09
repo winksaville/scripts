@@ -3,6 +3,7 @@
 # for examples
 
 export _BASHRC_X=1
+export GPG_TTY=$(tty)
 
 shopt -s expand_aliases
 
