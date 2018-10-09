@@ -1,7 +1,7 @@
 [user]
 	email = wink@saville.com
 	name = Wink Saville
-	signingkey = 0x9F79B9CEB03232F9
+	signingkey = 0xD232788D248BCF0E
 [core]
 	excludesfile = /home/wink/.gitignore
 [color]
@@ -15,3 +15,5 @@
 	helper = store --file /home/wink/.gitcreds
 [commit]
 	gpgsign = true
+[gui]
+	warndetachedcommit = true
