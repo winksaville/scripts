@@ -3,7 +3,7 @@
 # for examples
 
 export _BASHRC_X=1
-export GPG_TTY=$(tty)
+#export GPG_TTY=$(tty)
 
 shopt -s expand_aliases
 
@@ -187,7 +187,7 @@ prepend_path_if_exists() {
 prepend_path_if_exists "$HOME/opt/x-tools/i386-unknown-elf/bin"
 prepend_path_if_exists "$HOME/opt/x-tools/arm-unknown-eabi/bin"
 prepend_path_if_exists "$HOME/opt/bin"
-prepend_path_if_exists "$HOME/llvm-clang/bin"
+#prepend_path_if_exists "$HOME/llvm-clang/bin"
 prepend_path_if_exists "$HOME/bin"
 prepend_path_if_exists "$HOME/Android/Studio/bin"
 prepend_path_if_exists "$HOME/Android/Sdk/platform-tools"
