@@ -10,3 +10,5 @@ from github as soon as possible copy:
 - dirmngr.conf to ~/.gnupg/
 - gitconfig to ~/.gitconfig
 - gitignore to ~/.gitignore
+
+Note: keep git-completion.bash upto date.
