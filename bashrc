@@ -184,15 +184,17 @@ prepend_path() {
 prepend_path_if_exists() {
   [ -d "$1" ] && prepend_path $1 $2
 }
+prepend_path_if_exists "$HOME/bin"
+prepend_path_if_exists "$HOME/bin/arduino-1.8.9"
+prepend_path_if_exists "$HOME/local/gcc-arm-none-eabi-8-2018-q4-major/bin"
 prepend_path_if_exists "$HOME/opt/x-tools/i386-unknown-elf/bin"
 prepend_path_if_exists "$HOME/opt/x-tools/arm-unknown-eabi/bin"
 prepend_path_if_exists "$HOME/opt/bin"
+prepend_path_if_exists "$HOME/local/bin"
 #prepend_path_if_exists "$HOME/llvm-clang/bin"
-prepend_path_if_exists "$HOME/bin"
 prepend_path_if_exists "$HOME/Android/Studio/bin"
 prepend_path_if_exists "$HOME/Android/Sdk/platform-tools"
 prepend_path_if_exists "$NPM_GLOBAL/bin"
-#prepend_path_if_exists "$HOME/.local/bin"
 
 # Update PYTHONPATH, this is needed for meson
 prepend_path /home/wink/opt/lib/python3.5/site-packages PYTHONPATH
