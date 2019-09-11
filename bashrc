@@ -2,15 +2,33 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-export _BASHRC_X=1
-#export GPG_TTY=$(tty)
-
-shopt -s expand_aliases
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 set -o vi
+
+# Determine machine we're running on
+# from: https://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+#echo machine=${machine}
+
+# Default to home directory, needed by Msys sometimes
+cd ~
+
+# On MingGw export MSYS
+[[ "${machine}" == MinGw ]] && export MSYS=winsymlinks:nativestrict
+
+export _BASHRC_X=1
+#export GPG_TTY=$(tty)
+
+shopt -s expand_aliases
 
 # Add Command not found hook so pkgfile is used to teill where it is
 command_not_found_file="/usr/share/doc/pkgfile/command-not-found.bash"
@@ -82,13 +100,15 @@ if [ -z "$force_color_prompt" ]; then
 else
     color_prompt=yes
 fi
-if [ "$color_prompt" = yes ]; then
-  PS1='${debian_chroot:+($debian_chroot)}\[\e[0;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[0;36m\]$(__git_ps1 " (%s)")\[\e[00m\]\r\n\$ '
-else
-  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 " (%s)")\r\n\$ '
+
+if [[ "${machine}" == Linux ]]; then
+  if [[ "$color_prompt" == yes ]]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\e[0;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[0;36m\]$(__git_ps1 " (%s)")\[\e[00m\]\r\n\$ '
+  else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 " (%s)")\r\n\$ '
+  fi
 fi
 unset color_prompt force_color_prompt
-
 #PS1='[\u@\h \W$(__git_ps1 " (%s)")]\n\$ '
 
 # If this is an xterm set the title to user@host:dir
@@ -193,8 +213,13 @@ prepend_path_if_exists "$HOME/opt/bin"
 prepend_path_if_exists "$HOME/local/bin"
 #prepend_path_if_exists "$HOME/llvm-clang/bin"
 prepend_path_if_exists "$HOME/Android/Studio/bin"
+prepend_path_if_exists "$HOME/Android/Sdk/tools/bin"
 prepend_path_if_exists "$HOME/Android/Sdk/platform-tools"
+prepend_path_if_exists "$HOME/Android/Sdk/tools"
+prepend_path_if_exists "$HOME/Android/Sdk/emulator"
 prepend_path_if_exists "$NPM_GLOBAL/bin"
+prepend_path_if_exists "$HOME/go/bin"
+prepend_path_if_exists "$HOME/prgs/flutter/framework/bin"
 
 # Update PYTHONPATH, this is needed for meson
 prepend_path /home/wink/opt/lib/python3.5/site-packages PYTHONPATH
@@ -231,3 +256,5 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 # Add docker id
 export DOCKER_ID_USER="winksaville"
+
+export ANDROID_SDK=$HOME/Library/Android/sdk
