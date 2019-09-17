@@ -22,6 +22,9 @@ esac
 # Default to home directory, needed by Msys sometimes
 cd ~
 
+# Set TERM to fix gradle
+export TERM=xterm
+
 # On MingGw export MSYS
 [[ "${machine}" == MinGw ]] && export MSYS=winsymlinks:nativestrict
 
@@ -257,4 +260,4 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # Add docker id
 export DOCKER_ID_USER="winksaville"
 
-export ANDROID_SDK=$HOME/Library/Android/sdk
+export ANDROID_SDK_ROOT=$HOME/Android/Sdk
