@@ -17,3 +17,7 @@
 	gpgsign = true
 [gui]
 	warndetachedcommit = true
+[alias]
+	delmaster = !git checkout -q origin/master && git branch -d master 2> null || :
+	sdelmaster = !git delmaster && git submodule foreach 'git delmaster'
+	ssync = !git pull origin master && git submodule sync --recursive && git submodule update --init --recursive
