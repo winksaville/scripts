@@ -18,6 +18,6 @@
 [gui]
 	warndetachedcommit = true
 [alias]
-	delmaster = !git checkout -q origin/master && git branch -d master 2> null || :
-	sdelmaster = !git delmaster && git submodule foreach 'git delmaster'
-	ssync = !git pull origin master && git submodule sync --recursive && git submodule update --init --recursive
+	xdelmaster = !git checkout -q origin/master && git branch -d master 2> null || :
+	delmaster = !git xdeletemaster && git submodule foreach 'git delmaster'
+	sync = !git pull origin master && git submodule sync --recursive && git submodule update --init --recursive
