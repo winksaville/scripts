@@ -250,14 +250,16 @@ append_path /home/wink/foss/depot_tools
 # For a locally built llvm update LD_LIBRARY_PATH
 #prepend_path $HOME/llvm-clang/lib LD_LIBRARY_PATH
 
+# Set up nvm (Node Version Manager)
+export NVM_DIR="$HOME/.nvm"
+export NVM_SOURCE="/usr/share/nvm"
+[ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"
 
-export NVM_DIR="/home/wink/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+# Add RVM (Ruby Version Manager) to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
 # Add docker id
 export DOCKER_ID_USER="winksaville"
 
 export ANDROID_SDK_ROOT=$HOME/Android/Sdk
+
