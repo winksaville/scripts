@@ -2,7 +2,7 @@
 " that can be toggled using <Space>k
 
 "if ((&ft != 'c') && (&ft != 'h'))
-"if (&ft != 'c')
+"if (&ft != 'h')
 "	finish
 "endif
 
