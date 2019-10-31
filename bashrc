@@ -173,9 +173,9 @@ alias sudo='sudo '
 alias vi='vim -p $*'
 alias vim='vim -p $*'
 
-#export GOPATH="/home/wink/prgs/go"
-#export GOBIN="/home/wink/prgs/go/bin"
-#export GOROOT="/home/wink/foss/go"
+#export GOPATH="$HOME/prgs/go"
+#export GOBIN="$HOME/prgs/go/bin"
+#export GOROOT="$HOME/foss/go"
 #export GOROOT_FINAL="/opt/go/bin"
 
 export SYSTEMD_EDITOR="vim"
@@ -194,6 +194,9 @@ append_path() {
   eval_dlr_path=$(eval "echo $dlr_path")
   #echo eval_ldr_path=$eval_dlr_path
   [ -z  "$eval_dlr_path" ] && eval "export $path=$1" || eval "export $path=$dlr_path:$1"
+}
+append_path_if_exists() {
+  [ -d "$1" ] && append_path $1 $2
 }
 prepend_path() {
   [ -z "$2" ] && path=PATH || path=$2
@@ -223,9 +226,11 @@ prepend_path_if_exists "$HOME/Android/Sdk/emulator"
 prepend_path_if_exists "$NPM_GLOBAL/bin"
 prepend_path_if_exists "$HOME/go/bin"
 prepend_path_if_exists "$HOME/prgs/flutter/framework/bin"
+prepend_path_if_exists "$HOME/fuchsia/.jiri_root/bin"
+prepend_path_if_exists "$HOME/.cargo/bin"
 
 # Update PYTHONPATH, this is needed for meson
-prepend_path /home/wink/opt/lib/python3.5/site-packages PYTHONPATH
+prepend_path $HOME/opt/lib/python3.5/site-packages PYTHONPATH
 
 # Update PYTHONPATH, for code-aster
 #  NOTE: we may want to use sys.path see:
@@ -245,8 +250,6 @@ prepend_path_if_exists "$HOME/foss/binaryen/bin"
 # pony-0.20 see https://medium.com/@bpdp/latest-pony-in-arch-linux-dea6427bd77f
 #prepend_path_if_exists "$HOME/opt/pony-0.20.0/bin"
 
-append_path /home/wink/foss/depot_tools
-
 # For a locally built llvm update LD_LIBRARY_PATH
 #prepend_path $HOME/llvm-clang/lib LD_LIBRARY_PATH
 
@@ -256,10 +259,20 @@ export NVM_SOURCE="/usr/share/nvm"
 [ -s "$NVM_SOURCE/nvm.sh" ] && . "$NVM_SOURCE/nvm.sh"
 
 # Add RVM (Ruby Version Manager) to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+append_path_if_exists PATH="$PATH:$HOME/.rvm/bin"
 
 # Add docker id
 export DOCKER_ID_USER="winksaville"
 
+# Android
 export ANDROID_SDK_ROOT=$HOME/Android/Sdk
+
+# Depot tools from chromimum for Fuchsia and chromimum
+append_path_if_exists $HOME/foss/depot_tools
+
+# Add virtualenvwrapper
+export WORKON_HOME=~/.virtualenvs
+source /usr/bin/virtualenvwrapper_lazy.sh
+
+export CCACHE_DIR=~/.ccache
 
