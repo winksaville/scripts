@@ -21,3 +21,7 @@
 	xdelmaster = !git checkout -q origin/master && git branch -d master 2> null || :
 	delmaster = !git xdeletemaster && git submodule foreach 'git delmaster'
 	sync = !git pull origin master && git submodule sync --recursive && git submodule update --init --recursive
+[http]
+	cookiefile = /home/wink/.gitcookies
+[merge]
+	conflictstyle = diff3
