@@ -3,22 +3,21 @@
 #
 # Another alternative is to use https://www.archlinux.org/mirrorlist/
 
-Server = https://mirror.lty.me/archlinux/$repo/os/$arch
-Server = https://arch.mirror.constant.com/$repo/os/$arch
-Server = https://mirror.hackingand.coffee/arch/$repo/os/$arch
-Server = https://mirror.dc02.hackingand.coffee/arch/$repo/os/$arch
-Server = https://mirror.wdc1.us.leaseweb.net/archlinux/$repo/os/$arch
-Server = https://arlm.tyzoid.com/$repo/os/$arch
 Server = https://mirror.sfo12.us.leaseweb.net/archlinux/$repo/os/$arch
+Server = https://mirror.lty.me/archlinux/$repo/os/$arch
+Server = https://mirrors.xtom.com/archlinux/$repo/os/$arch
+Server = https://mirrors.sonic.net/archlinux/$repo/os/$arch
+Server = https://mirror.wdc1.us.leaseweb.net/archlinux/$repo/os/$arch
 Server = https://mirror.dal10.us.leaseweb.net/archlinux/$repo/os/$arch
 Server = https://mirror.kaminski.io/archlinux/$repo/os/$arch
+Server = https://arch.mirror.constant.com/$repo/os/$arch
 Server = https://arch.mirror.square-r00t.net/$repo/os/$arch
-Server = https://mirrors.xtom.com/archlinux/$repo/os/$arch
+Server = https://arlm.tyzoid.com/$repo/os/$arch
 Server = https://mirror.stephen304.com/archlinux/$repo/os/$arch
-Server = https://mirrors.sonic.net/archlinux/$repo/os/$arch
 Server = https://mirrors.rutgers.edu/archlinux/$repo/os/$arch
 Server = https://mirrors.kernel.org/archlinux/$repo/os/$arch
 Server = https://mirrors.rit.edu/archlinux/$repo/os/$arch
 Server = https://archlinux.surlyjake.com/archlinux/$repo/os/$arch
 Server = https://mirrors.lug.mtu.edu/archlinux/$repo/os/$arch
 Server = https://mirrors.ocf.berkeley.edu/archlinux/$repo/os/$arch
+Server = https://mirror.hackingand.coffee/arch/$repo/os/$arch
