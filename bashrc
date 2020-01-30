@@ -23,7 +23,11 @@ esac
 cd ~
 
 # Set TERM to fix gradle
-export TERM=xterm
+#export TERM=xterm
+
+# Set TERM top cygwin so "clear" clears the screen an "vi" works on Windows 10
+#export TERM=cygwin
+
 
 # On MingGw export MSYS
 [[ "${machine}" == MinGw ]] && export MSYS=winsymlinks:nativestrict
@@ -173,6 +177,8 @@ alias sudo='sudo '
 alias vi='vim -p $*'
 alias vim='vim -p $*'
 
+alias dvpy='conda activate dvpy38'
+
 #export GOPATH="$HOME/prgs/go"
 #export GOBIN="$HOME/prgs/go/bin"
 #export GOROOT="$HOME/foss/go"
@@ -219,17 +225,15 @@ prepend_path_if_exists "$HOME/opt/bin"
 prepend_path_if_exists "$HOME/local/bin"
 #prepend_path_if_exists "$HOME/llvm-clang/bin"
 prepend_path_if_exists "$HOME/Android/Studio/bin"
+prepend_path_if_exists "$HOME/Android/Sdk/tools"
 prepend_path_if_exists "$HOME/Android/Sdk/tools/bin"
 prepend_path_if_exists "$HOME/Android/Sdk/platform-tools"
-prepend_path_if_exists "$HOME/Android/Sdk/tools"
 prepend_path_if_exists "$HOME/Android/Sdk/emulator"
 prepend_path_if_exists "$NPM_GLOBAL/bin"
 prepend_path_if_exists "$HOME/go/bin"
 prepend_path_if_exists "$HOME/prgs/flutter/framework/bin"
 prepend_path_if_exists "$HOME/fuchsia/.jiri_root/bin"
 prepend_path_if_exists "$HOME/.cargo/bin"
-
-prepend_path_if_exists "/opt/anaconda/bin"
 
 # Update PYTHONPATH, this is needed for meson
 prepend_path $HOME/opt/lib/python3.5/site-packages PYTHONPATH
@@ -268,6 +272,7 @@ export DOCKER_ID_USER="winksaville"
 
 # Android
 export ANDROID_SDK_ROOT=$HOME/Android/Sdk
+export ANDROID_HOME=$ANDROID_SDK_ROOT
 
 # Depot tools from chromimum for Fuchsia and chromimum
 append_path_if_exists $HOME/foss/depot_tools
