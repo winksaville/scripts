@@ -23,7 +23,7 @@ esac
 cd ~
 
 # Set TERM to fix gradle
-#export TERM=xterm
+export TERM=xterm
 
 # Set TERM top cygwin so "clear" clears the screen an "vi" works on Windows 10
 #export TERM=cygwin
