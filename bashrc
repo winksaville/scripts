@@ -188,7 +188,8 @@ export SYSTEMD_EDITOR="vim"
 export VISUAL="vim"
 
 # NODE & NPM env variables
-NPM_GLOBAL="$HOME/.npm-global"
+export npm_config_prefix="$HOME/.npm-globalX"
+NPM_GLOBAL="$npm_config_prefix"
 #MANPATH="$NPM_GLOBAL/share/man:$(manpath)"
 NODE_PATH="$NPM_GLOBAL/lib/node_modules:$NODE_PATH"
 
