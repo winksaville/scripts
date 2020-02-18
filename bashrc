@@ -23,11 +23,17 @@ esac
 cd ~
 
 # Set TERM to fix gradle
-export TERM=xterm
+case "$machine" in
+    Linux)     term=xterm;;
+    Mac)       term=xterm;;
+    Cygwin)    term=cygwin;;
+    MinGw)     term=cygwin;;
+    *)         term=UNKNOWN;;
+esac
 
-# Set TERM top cygwin so "clear" clears the screen an "vi" works on Windows 10
-#export TERM=cygwin
+[[ "$newTerm" != "" ]] && term=$newTerm
 
+export TERM=$term
 
 # On MingGw export MSYS
 [[ "${machine}" == MinGw ]] && export MSYS=winsymlinks:nativestrict
@@ -40,6 +46,9 @@ shopt -s expand_aliases
 # Add Command not found hook so pkgfile is used to teill where it is
 command_not_found_file="/usr/share/doc/pkgfile/command-not-found.bash"
 [ -f "$command_not_found_file" ] && source "$command_not_found_file"
+
+# Add flutter-completion
+source ~/scripts/flutter-completion.bash
 
 # Add git-completion and prompt for bash
 source ~/scripts/git-completion.bash
@@ -232,9 +241,12 @@ prepend_path_if_exists "$HOME/Android/Sdk/platform-tools"
 prepend_path_if_exists "$HOME/Android/Sdk/emulator"
 prepend_path_if_exists "$NPM_GLOBAL/bin"
 prepend_path_if_exists "$HOME/go/bin"
-prepend_path_if_exists "$HOME/prgs/flutter/framework/bin"
 prepend_path_if_exists "$HOME/fuchsia/.jiri_root/bin"
 prepend_path_if_exists "$HOME/.cargo/bin"
+prepend_path_if_exists "$HOME/prgs/flutter/flutter/bin"
+prepend_path_if_exists "$HOME/.pub-cache/bin"
+#prepend_path_if_exists "$HOME/prgs/flutter/framework/bin"
+#prepend_path_if_exists "$HOME/prgs/flutter/framework/.pub-cache/bin"
 
 # Update PYTHONPATH, this is needed for meson
 prepend_path $HOME/opt/lib/python3.5/site-packages PYTHONPATH
@@ -283,7 +295,6 @@ export WORKON_HOME=~/.virtualenvs
 source /usr/bin/virtualenvwrapper_lazy.sh
 
 export CCACHE_DIR=~/.ccache
-
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
