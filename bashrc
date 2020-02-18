@@ -291,8 +291,8 @@ export ANDROID_HOME=$ANDROID_SDK_ROOT
 append_path_if_exists $HOME/foss/depot_tools
 
 # Add virtualenvwrapper
-export WORKON_HOME=~/.virtualenvs
-source /usr/bin/virtualenvwrapper_lazy.sh
+#export WORKON_HOME=~/.virtualenvs
+#source /usr/bin/virtualenvwrapper_lazy.sh
 
 export CCACHE_DIR=~/.ccache
 
