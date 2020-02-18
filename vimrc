@@ -20,10 +20,16 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'elmcast/elm-vim'
 Plug 'https://github.com/jakwings/vim-pony.git'
-Plug 'https://github.com/ziglang/zig.vim.git'
+Plug 'https://github.com/ziglang/zig.vim'
+Plug 'https://github.com/elixir-editors/vim-elixir'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'yuezk/vim-js'
+"Plug 'HerringtonDarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
 
 call plug#end()
 
+set exrc
 set cmdheight=1
 
 syntax on
@@ -35,6 +41,12 @@ set mouse=a
 
 set tabpagemax=20
 set showtabline=1
+
+"Dart variables"
+let dart_html_in_string=v:true
+let dart_corelib_highlight=v:true
+let dart_style_guide=2
+let dart_format_on_save=1
 
 " Add full file path to status line
 "set statusline+=%<%F\ %h%m%r%y%=%-14.(%l,%c%V%)\ %P
@@ -76,4 +88,3 @@ map <C-I> :pyf ~/scripts/clang-format.py
 
 " Change the matching highlighting
 hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
-
