@@ -245,6 +245,7 @@ prepend_path_if_exists "$HOME/fuchsia/.jiri_root/bin"
 prepend_path_if_exists "$HOME/.cargo/bin"
 prepend_path_if_exists "$HOME/prgs/flutter/flutter/bin"
 prepend_path_if_exists "$HOME/.pub-cache/bin"
+prepend_path_if_exists "$HOME/opt/fah"
 #prepend_path_if_exists "$HOME/prgs/flutter/framework/bin"
 #prepend_path_if_exists "$HOME/prgs/flutter/framework/.pub-cache/bin"
 
