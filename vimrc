@@ -33,6 +33,7 @@ set exrc
 set cmdheight=1
 
 syntax on
+set background=dark
 set number
 set mouse=a
 "set shiftwidth=2
