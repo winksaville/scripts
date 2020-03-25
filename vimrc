@@ -22,10 +22,14 @@ Plug 'elmcast/elm-vim'
 Plug 'https://github.com/jakwings/vim-pony.git'
 Plug 'https://github.com/ziglang/zig.vim'
 Plug 'https://github.com/elixir-editors/vim-elixir'
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'yuezk/vim-js'
-"Plug 'HerringtonDarkholme/yats.vim'
-Plug 'maxmellon/vim-jsx-pretty'
+"Plug 'dart-lang/dart-vim-plugin'
+
+"Plug 'yuezk/vim-js'
+Plug 'HerringtonDarkholme/yats.vim'
+"Plug 'maxmellon/vim-jsx-pretty'
+"
+"Plug 'leafgarland/typescript-vim'
+"Plug 'peitalin/vim-jsx-typescript'
 
 call plug#end()
 
