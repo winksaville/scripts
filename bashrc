@@ -10,21 +10,34 @@ set -o vi
 # Determine machine we're running on
 # from: https://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux
 unameOut="$(uname -s)"
+unameVerOut="$(uname -v)"
+echo unameVerOut=${unameVerOut}
 case "${unameOut}" in
-    Linux*)     machine=Linux;;
+    Linux*)     [[ ${unameVerOut} =~ .*Microsoft*. ]] && machine=WSL || machine=Linux;;
     Darwin*)    machine=Mac;;
     CYGWIN*)    machine=Cygwin;;
     MINGW*)     machine=MinGw;;
     *)          machine="UNKNOWN:${unameOut}"
 esac
-#echo machine=${machine}
+echo machine=${machine}
 
 # Default to home directory, needed by Msys sometimes
 cd ~
 
+# Starg gpg-agent-relay in WAL
+if [[ "${machine}" == WSL ]]; then
+  # If the terminal that actually rung gpg-agne-relay.sh
+  # is killed then things don't work. Better would be if
+  # if was run as a system service. Maybe something like:
+  # https://superuser.com/a/1514776/362684
+  ~/scripts/gpg-agent-relay.sh &
+fi
+
+
 # Set TERM to fix gradle
 case "$machine" in
     Linux)     term=xterm;;
+    WSL)       term=xterm;;
     Mac)       term=xterm;;
     Cygwin)    term=cygwin;;
     MinGw)     term=cygwin;;
@@ -117,7 +130,7 @@ else
     color_prompt=yes
 fi
 
-if [[ "${machine}" == Linux ]]; then
+if [[ "${machine}" == Linux || "${machine}" == WSL ]]; then
   if [[ "$color_prompt" == yes ]]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\e[0;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[0;36m\]$(__git_ps1 " (%s)")\[\e[00m\]\r\n\$ '
   else
@@ -142,6 +155,7 @@ if (( $? == 0 )); then
 
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
+    export LS_COLORS="ow=01;34:di=01;34"
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
@@ -226,7 +240,9 @@ prepend_path() {
 prepend_path_if_exists() {
   [ -d "$1" ] && prepend_path $1 $2
 }
+export GIT_BASH_HOME=/mnt/c/Users/wink
 prepend_path_if_exists "$HOME/bin"
+prepend_path_if_exists "$GIT_BASH_HOME/bin"
 prepend_path_if_exists "$HOME/bin/arduino-1.8.9"
 prepend_path_if_exists "$HOME/local/gcc-arm-none-eabi-8-2018-q4-major/bin"
 prepend_path_if_exists "$HOME/opt/x-tools/i386-unknown-elf/bin"
