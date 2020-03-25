@@ -11,7 +11,7 @@ set -o vi
 # from: https://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux
 unameOut="$(uname -s)"
 unameVerOut="$(uname -v)"
-echo unameVerOut=${unameVerOut}
+#echo unameVerOut=${unameVerOut}
 case "${unameOut}" in
     Linux*)     [[ ${unameVerOut} =~ .*Microsoft*. ]] && machine=WSL || machine=Linux;;
     Darwin*)    machine=Mac;;
@@ -19,12 +19,12 @@ case "${unameOut}" in
     MINGW*)     machine=MinGw;;
     *)          machine="UNKNOWN:${unameOut}"
 esac
-echo machine=${machine}
+#echo machine=${machine}
 
 # Default to home directory, needed by Msys sometimes
 cd ~
 
-# Starg gpg-agent-relay in WAL
+# Starg gpg-agent-relay in WSL
 if [[ "${machine}" == WSL ]]; then
   # If the terminal that actually rung gpg-agne-relay.sh
   # is killed then things don't work. Better would be if
@@ -130,13 +130,13 @@ else
     color_prompt=yes
 fi
 
-if [[ "${machine}" == Linux || "${machine}" == WSL ]]; then
+#if [[ "${machine}" == Linux || "${machine}" == WSL ]]; then
   if [[ "$color_prompt" == yes ]]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\e[0;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[0;36m\]$(__git_ps1 " (%s)")\[\e[00m\]\r\n\$ '
   else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 " (%s)")\r\n\$ '
   fi
-fi
+#fi
 unset color_prompt force_color_prompt
 #PS1='[\u@\h \W$(__git_ps1 " (%s)")]\n\$ '
 
@@ -266,7 +266,7 @@ prepend_path_if_exists "$HOME/opt/fah"
 #prepend_path_if_exists "$HOME/prgs/flutter/framework/.pub-cache/bin"
 
 # Update PYTHONPATH, this is needed for meson
-prepend_path $HOME/opt/lib/python3.5/site-packages PYTHONPATH
+#prepend_path $HOME/opt/lib/python3.5/site-packages PYTHONPATH
 
 # Update PYTHONPATH, for code-aster
 #  NOTE: we may want to use sys.path see:
