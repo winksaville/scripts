@@ -51,8 +51,7 @@ export TERM=$term
 # On MingGw export MSYS
 [[ "${machine}" == MinGw ]] && export MSYS=winsymlinks:nativestrict
 
-export _BASHRC_X=1
-#export GPG_TTY=$(tty)
+export GPG_TTY=$(tty)
 
 shopt -s expand_aliases
 
@@ -216,6 +215,15 @@ NPM_GLOBAL="$npm_config_prefix"
 #MANPATH="$NPM_GLOBAL/share/man:$(manpath)"
 NODE_PATH="$NPM_GLOBAL/lib/node_modules:$NODE_PATH"
 
+# Android setup ANDROID_SDK_ROOT
+for ask in  "/Users/winksaville/Library/Android/sdk" "/Users/wink/LIbrary/Android/sdk" "${HOME}/Android/Sdk}";  do
+  if [ -d "$ask" ]; then
+    export ANDROID_SDK_ROOT=${ask}
+    break
+  fi
+done
+#echo ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT
+
 append_path() {
   [ -z "$2" ] && path=PATH || path=$2
   dlr_path="\$$path"
@@ -250,11 +258,11 @@ prepend_path_if_exists "$HOME/opt/x-tools/arm-unknown-eabi/bin"
 prepend_path_if_exists "$HOME/opt/bin"
 prepend_path_if_exists "$HOME/local/bin"
 #prepend_path_if_exists "$HOME/llvm-clang/bin"
-prepend_path_if_exists "$HOME/Android/Studio/bin"
-prepend_path_if_exists "$HOME/Android/Sdk/tools"
-prepend_path_if_exists "$HOME/Android/Sdk/tools/bin"
-prepend_path_if_exists "$HOME/Android/Sdk/platform-tools"
-prepend_path_if_exists "$HOME/Android/Sdk/emulator"
+prepend_path_if_exists "${ANDROID_SDK_ROOT}/bin"
+prepend_path_if_exists "${ANDROID_SDK_ROOT}/tools"
+prepend_path_if_exists "${ANDROID_SDK_ROOT}/tools/bin"
+prepend_path_if_exists "${ANDROID_SDK_ROOT}/platform-tools"
+prepend_path_if_exists "${ANDROID_SDK_ROOT}/emulator"
 prepend_path_if_exists "$NPM_GLOBAL/bin"
 prepend_path_if_exists "$HOME/go/bin"
 prepend_path_if_exists "$HOME/fuchsia/.jiri_root/bin"
@@ -299,10 +307,6 @@ append_path_if_exists PATH="$PATH:$HOME/.rvm/bin"
 
 # Add docker id
 export DOCKER_ID_USER="winksaville"
-
-# Android
-export ANDROID_SDK_ROOT=$HOME/Android/Sdk
-export ANDROID_HOME=$ANDROID_SDK_ROOT
 
 # Depot tools from chromimum for Fuchsia and chromimum
 append_path_if_exists $HOME/foss/depot_tools
