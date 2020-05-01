@@ -199,7 +199,7 @@ alias sudo='sudo '
 alias vi='vim -p $*'
 alias vim='vim -p $*'
 
-alias dvpy='conda activate dvpy38'
+#alias dvpy='conda activate dvpy38'
 
 #export GOPATH="$HOME/prgs/go"
 #export GOBIN="$HOME/prgs/go/bin"
@@ -216,7 +216,7 @@ NPM_GLOBAL="$npm_config_prefix"
 NODE_PATH="$NPM_GLOBAL/lib/node_modules:$NODE_PATH"
 
 # Android setup ANDROID_SDK_ROOT
-for ask in  "/Users/winksaville/Library/Android/sdk" "/Users/wink/LIbrary/Android/sdk" "${HOME}/Android/Sdk}";  do
+for ask in  "/Users/winksaville/Library/Android/sdk" "/Users/wink/LIbrary/Android/sdk" "${HOME}/Android/Sdk";  do
   if [ -d "$ask" ]; then
     export ANDROID_SDK_ROOT=${ask}
     break
@@ -270,6 +270,7 @@ prepend_path_if_exists "$HOME/.cargo/bin"
 prepend_path_if_exists "$HOME/prgs/flutter/flutter/bin"
 prepend_path_if_exists "$HOME/.pub-cache/bin"
 prepend_path_if_exists "$HOME/opt/fah"
+prepend_path_if_exists "$HOME/opt/idea-IC/bin"
 #prepend_path_if_exists "$HOME/prgs/flutter/framework/bin"
 #prepend_path_if_exists "$HOME/prgs/flutter/framework/.pub-cache/bin"
 
@@ -317,18 +318,18 @@ append_path_if_exists $HOME/foss/depot_tools
 
 export CCACHE_DIR=~/.ccache
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/anaconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/anaconda/etc/profile.d/conda.sh" ]; then
-        . "/opt/anaconda/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/anaconda/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/opt/anaconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/opt/anaconda/etc/profile.d/conda.sh" ]; then
+#         . "/opt/anaconda/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/opt/anaconda/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
 
