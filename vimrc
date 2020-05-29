@@ -22,6 +22,7 @@ Plug 'elmcast/elm-vim'
 Plug 'https://github.com/jakwings/vim-pony.git'
 Plug 'https://github.com/ziglang/zig.vim'
 Plug 'https://github.com/elixir-editors/vim-elixir'
+Plug 'https://github.com/sirtaj/vim-openscad.git'
 "Plug 'dart-lang/dart-vim-plugin'
 
 "Plug 'yuezk/vim-js'

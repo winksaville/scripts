@@ -22,7 +22,7 @@ esac
 #echo machine=${machine}
 
 # Default to home directory, needed by Msys sometimes
-cd ~
+#cd ~
 
 # Starg gpg-agent-relay in WSL
 if [[ "${machine}" == WSL ]]; then
@@ -216,7 +216,7 @@ NPM_GLOBAL="$npm_config_prefix"
 NODE_PATH="$NPM_GLOBAL/lib/node_modules:$NODE_PATH"
 
 # Android setup ANDROID_SDK_ROOT
-for ask in  "/Users/winksaville/Library/Android/sdk" "/Users/wink/LIbrary/Android/sdk" "${HOME}/Android/Sdk";  do
+for ask in  "/Users/winksaville/Library/Android/sdk" "/Users/wink/Library/Android/sdk" "${HOME}/Android/Sdk";  do
   if [ -d "$ask" ]; then
     export ANDROID_SDK_ROOT=${ask}
     break
@@ -271,6 +271,7 @@ prepend_path_if_exists "$HOME/prgs/flutter/flutter/bin"
 prepend_path_if_exists "$HOME/.pub-cache/bin"
 prepend_path_if_exists "$HOME/opt/fah"
 prepend_path_if_exists "$HOME/opt/idea-IC/bin"
+#prepend_path_if_exists "/opt/cuda/bin"
 #prepend_path_if_exists "$HOME/prgs/flutter/framework/bin"
 #prepend_path_if_exists "$HOME/prgs/flutter/framework/.pub-cache/bin"
 
