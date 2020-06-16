@@ -22,8 +22,12 @@ Plug 'elmcast/elm-vim'
 Plug 'https://github.com/jakwings/vim-pony.git'
 Plug 'https://github.com/ziglang/zig.vim'
 Plug 'https://github.com/elixir-editors/vim-elixir'
-Plug 'https://github.com/sirtaj/vim-openscad.git'
+Plug 'https://github.com/winksaville/vim-openscad.git', { 'branch': 'Default-to-2-space-tabstops' }
+Plug 'https://github.com/winksaville/vim-curv.git'
 "Plug 'dart-lang/dart-vim-plugin'
+
+"Example of using a filed a plugin
+"Plug '~/.vim/plugged/vim-curv'
 
 "Plug 'yuezk/vim-js'
 Plug 'HerringtonDarkholme/yats.vim'
