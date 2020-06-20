@@ -320,14 +320,16 @@ append_path_if_exists $HOME/foss/depot_tools
 
 export CCACHE_DIR=~/.ccache
 
-# Default to clang
-if [[ $(clang --version) == 'clang version'* ]]; then
-  export CC=clang
-  export CXX=clang++
-  if [[ $(cc --version) == 'cc (GCC)'* || $(c++ --version) == 'c++ (GCC)'* || $(ld --version) == 'GNU ld'* ]]; then
-    echo "Run 'sudo $HOME/scripts/lnclang.bash' to make clang the default compliler"
-  fi
-fi
+# I tried to compile "coin" and it had problems, for now
+# will leave gcc as the default.
+## Default to clang
+#if [[ $(clang --version) == 'clang version'* ]]; then
+#  export CC=clang
+#  export CXX=clang++
+#  if [[ $(cc --version) == 'cc (GCC)'* || $(c++ --version) == 'c++ (GCC)'* || $(ld --version) == 'GNU ld'* ]]; then
+#    echo "Run 'sudo $HOME/scripts/lnclang.bash' to make clang the default compliler"
+#  fi
+#fi
 
 # # >>> conda initialize >>>
 # # !! Contents within this block are managed by 'conda init' !!
