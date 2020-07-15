@@ -346,3 +346,7 @@ export CCACHE_DIR=~/.ccache
 # unset __conda_setup
 # # <<< conda initialize <<<
 
+# Temporary hack so cq-editor runs
+#export CASROOT=
+
+alias cq-dev='. /opt/anaconda/etc/profile.d/conda.sh ; conda activate cq-dev ; export PYTHONPATH="/home/wink/prgs/CadQuery/forks/cadquery"'
