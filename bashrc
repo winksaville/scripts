@@ -272,6 +272,7 @@ prepend_path_if_exists "$HOME/.pub-cache/bin"
 prepend_path_if_exists "$HOME/go/bin"
 prepend_path_if_exists "$HOME/opt/fah"
 prepend_path_if_exists "$HOME/opt/idea-IC/bin"
+prepend_path_if_exists "/opt/anaconda/bin"
 #prepend_path_if_exists "/opt/cuda/bin"
 #prepend_path_if_exists "$HOME/prgs/flutter/framework/bin"
 #prepend_path_if_exists "$HOME/prgs/flutter/framework/.pub-cache/bin"
@@ -349,4 +350,6 @@ export CCACHE_DIR=~/.ccache
 # Temporary hack so cq-editor runs
 #export CASROOT=
 
+alias act-base='. /opt/anaconda/etc/profile.d/conda.sh ; conda activate base'
 alias cq-dev='. /opt/anaconda/etc/profile.d/conda.sh ; conda activate cq-dev ; export PYTHONPATH="/home/wink/prgs/CadQuery/forks/cadquery"'
+alias cqgui-master='. /opt/anaconda/etc/profile.d/conda.sh ; conda activate cqgui-master'
