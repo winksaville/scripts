@@ -248,7 +248,13 @@ prepend_path() {
 prepend_path_if_exists() {
   [ -d "$1" ] && prepend_path $1 $2
 }
-export GIT_BASH_HOME=/mnt/c/Users/wink
+
+if [[ "${machine}" == WSL ]]; then
+	export GIT_BASH_HOME=/mnt/c/Users/wink
+fi
+if [[ "${machine}" == Mac ]]; then
+	prepend_path "/usr/local/bin"
+fi
 prepend_path_if_exists "$HOME/bin"
 prepend_path_if_exists "$GIT_BASH_HOME/bin"
 prepend_path_if_exists "$HOME/bin/arduino-1.8.9"
