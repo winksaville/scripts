@@ -6,6 +6,7 @@
 [[ $- != *i* ]] && return
 
 set -o vi
+set -o histexpand
 
 # Determine machine we're running on
 # from: https://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux
@@ -278,6 +279,7 @@ prepend_path_if_exists "$HOME/.pub-cache/bin"
 prepend_path_if_exists "$HOME/go/bin"
 prepend_path_if_exists "$HOME/opt/fah"
 prepend_path_if_exists "$HOME/opt/idea-IC/bin"
+prepend_path_if_exists "$HOME/.cargo/bin"
 #prepend_path_if_exists "/opt/anaconda/bin"
 #prepend_path_if_exists "/opt/cuda/bin"
 #prepend_path_if_exists "$HOME/prgs/flutter/framework/bin"
@@ -327,21 +329,19 @@ append_path_if_exists $HOME/foss/depot_tools
 
 export CCACHE_DIR=~/.ccache
 
-# I tried to compile "coin" and it had problems, for now
-# will leave gcc as the default.
-## Default to clang
-#if [[ $(clang --version) == 'clang version'* ]]; then
-#  export CC=clang
-#  export CXX=clang++
-#  if [[ $(cc --version) == 'cc (GCC)'* || $(c++ --version) == 'c++ (GCC)'* || $(ld --version) == 'GNU ld'* ]]; then
-#    echo "Run 'sudo $HOME/scripts/lnclang.bash' to make clang the default compliler"
-#  fi
-#fi
 
+# Use miniconda3 instead of anaconda and default to conda-forge
+# So on Arch Linux install miniconda3 via [aur](https://aur.archlinux.org/packages/miniconda3/)
+# This only adds /opt/miniconda3/condabin to PATH and condabin/ ONLY contains `conda`
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 
-alias act-base='. /opt/anaconda/etc/profile.d/conda.sh ; conda activate base'
-#alias cq-dev='. /opt/anaconda/etc/profile.d/conda.sh ; conda activate cq-dev ; export PYTHONPATH="/home/wink/prgs/CadQuery/forks/cadquery"'
-alias cq-dev='. /opt/anaconda/etc/profile.d/conda.sh ; conda activate cq-dev'
-alias cqgui-master='. /opt/anaconda/etc/profile.d/conda.sh ; conda activate cqgui-master'
-alias nb-dev='. /opt/anaconda/etc/profile.d/conda.sh ; conda activate nb-dev'
-alias py-38='. /opt/anaconda/etc/profile.d/conda.sh ; conda activate py-38'
+alias deact='conda deactivate'
+alias act-base='conda activate base'
+alias cq-dev='conda activate cq-dev'
+alias cq='conda activate cq'
+alias cqgui-master='conda activate cqgui-master'
+alias nb-dev='conda activate nb-dev'
+alias py-38='conda activate py-38'
+alias py-helix='conda activate py-helix'
+alias py38-helix='conda activate py38-helix'
+
