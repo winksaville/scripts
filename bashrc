@@ -25,16 +25,6 @@ esac
 # Default to home directory, needed by Msys sometimes
 #cd ~
 
-# Starg gpg-agent-relay in WSL
-if [[ "${machine}" == WSL ]]; then
-  # If the terminal that actually rung gpg-agne-relay.sh
-  # is killed then things don't work. Better would be if
-  # if was run as a system service. Maybe something like:
-  # https://superuser.com/a/1514776/362684
-  ~/scripts/gpg-agent-relay.sh &
-fi
-
-
 # Set TERM to fix gradle
 case "$machine" in
     Linux)     term=xterm;;
@@ -51,8 +41,6 @@ export TERM=$term
 
 # On MingGw export MSYS
 [[ "${machine}" == MinGw ]] && export MSYS=winsymlinks:nativestrict
-
-export GPG_TTY=$(tty)
 
 shopt -s expand_aliases
 
@@ -221,6 +209,9 @@ for ask in  "/Users/winksaville/Library/Android/sdk" "/Users/wink/Library/Androi
   if [ -d "$ask" ]; then
     export ANDROID_SDK_ROOT=${ask}
     break
+  else
+    # Give it a name that should never exist
+    export ANDROID_SDK_ROOT=_NoSuchDir_
   fi
 done
 #echo ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT
@@ -252,10 +243,40 @@ prepend_path_if_exists() {
 
 if [[ "${machine}" == WSL ]]; then
 	export GIT_BASH_HOME=/mnt/c/Users/wink
+else
+	# Give it a name that should never exist
+	export GIT_BASH_HOME=_NoSuchDir_
 fi
+
 if [[ "${machine}" == Mac ]]; then
-	prepend_path "/usr/local/bin"
+	export mac_arch=$(arch)
+	printf "machine=%s mac_arch=%s\n" $machine $mac_arch
+	case "${mac_arch}" in
+	    arm64)
+		    echo arm64
+		    prepend_path "/opt/homebrew/bin:/opt/homebrew/sbin"
+		    prepend_path_if_exists "/opt/homebrew/opt/icu4c/bin"
+		    prepend_path_if_exists "/opt/homebrew/opt/icu4c/sbin"
+
+  		    if [ -d "/opt/homebrew/opt/icu4c/lib" ]; then
+			    echo Adding LDFLAGS for icu4/lib and CPPFLAGS for /icu4c/include
+			    echo Should these be specific to build or maybe an alias?
+			    export LDFLAGS="-L/opt/homebrew/opt/icu4c/lib"
+  		    	    export CPPFLAGS="-I/opt/homebrew/opt/icu4c/include"
+		    fi
+		    ;;
+
+	    i386)
+		    echo i386
+		    prepend_path "/usr/local/bin"
+		    ;;
+	    *)
+		    echo other
+		    printf "mac_arch=%s is UNKNOWN\n" $mac_arch
+		    ;;
+	esac
 fi
+
 prepend_path_if_exists "$HOME/bin"
 prepend_path_if_exists "$GIT_BASH_HOME/bin"
 prepend_path_if_exists "$HOME/bin/arduino-1.8.9"
@@ -271,12 +292,16 @@ prepend_path_if_exists "${ANDROID_SDK_ROOT}/tools/bin"
 prepend_path_if_exists "${ANDROID_SDK_ROOT}/platform-tools"
 prepend_path_if_exists "${ANDROID_SDK_ROOT}/emulator"
 prepend_path_if_exists "$NPM_GLOBAL/bin"
+
+# For home on linux and elsewhere?
 prepend_path_if_exists "$HOME/go/bin"
+# For "everyone" on mac's
+prepend_path_if_exists "/usr/local/go/bin"
+
 prepend_path_if_exists "$HOME/fuchsia/.jiri_root/bin"
 prepend_path_if_exists "$HOME/.cargo/bin"
 prepend_path_if_exists "$HOME/prgs/flutter/flutter/bin"
 prepend_path_if_exists "$HOME/.pub-cache/bin"
-prepend_path_if_exists "$HOME/go/bin"
 prepend_path_if_exists "$HOME/opt/fah"
 prepend_path_if_exists "$HOME/opt/idea-IC/bin"
 prepend_path_if_exists "$HOME/.cargo/bin"
@@ -329,6 +354,41 @@ append_path_if_exists $HOME/foss/depot_tools
 
 export CCACHE_DIR=~/.ccache
 
+# Start gpg-agent
+
+if [[ "${machine}" == WSL ]]; then
+  # If the terminal that actually rung gpg-agne-relay.sh
+  # is killed then things don't work. Better would be if
+  # if was run as a system service. Maybe something like:
+  # https://superuser.com/a/1514776/362684
+  ~/scripts/gpg-agent-relay.sh &
+elif [[ "${machine}" == Mac ]]; then
+	case "${mac_arch}" in
+	    arm64)
+		    agent="gpg-agent-mac-arm64-info"
+		    ;;
+
+	    i386)
+		    agent="gpg-agent-mac-i386-info"
+		    ;;
+	    *)
+		    echo other
+		    printf "mac_arch=%s is UNKNOWN\n" $mac_arch
+		    ;;
+	esac
+	agent=gpg-agent.conf
+        if [ -f "~/.gnupg/${agent}" ] && [ -n "$(pgrep gpg-agent)" ]; then
+                echo "current agent=${agent}"
+                source ~.gnupg/${agent}
+                #export GPG_AGENT_INFO
+        else
+                echo new agent="${agent}"
+		eval $(gpg-agent --daemon --enable-ssh-support)
+        fi
+fi
+
+export SSH_AUTH_SOC=`gpgconf --list-dirs agent-ssh-socket`
+export GPG_TTY=$(tty)
 
 # Use miniconda3 instead of anaconda and default to conda-forge
 # So on Arch Linux install miniconda3 via [aur](https://aur.archlinux.org/packages/miniconda3/)
@@ -345,3 +405,4 @@ alias py-38='conda activate py-38'
 alias py-helix='conda activate py-helix'
 alias py38-helix='conda activate py38-helix'
 
+source "$HOME/.cargo/env"
