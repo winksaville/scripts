@@ -42,6 +42,8 @@ export TERM=$term
 # On MingGw export MSYS
 [[ "${machine}" == MinGw ]] && export MSYS=winsymlinks:nativestrict
 
+export GPG_TTY=$(tty)
+
 shopt -s expand_aliases
 
 # Add Command not found hook so pkgfile is used to teill where it is
@@ -194,6 +196,7 @@ alias vim='vim -p $*'
 #export GOBIN="$HOME/prgs/go/bin"
 #export GOROOT="$HOME/foss/go"
 #export GOROOT_FINAL="/opt/go/bin"
+export GO111MODULE="on"
 
 export SYSTEMD_EDITOR="vim"
 export VISUAL="vim"
@@ -304,6 +307,7 @@ prepend_path_if_exists "$HOME/prgs/flutter/flutter/bin"
 prepend_path_if_exists "$HOME/.pub-cache/bin"
 prepend_path_if_exists "$HOME/opt/fah"
 prepend_path_if_exists "$HOME/opt/idea-IC/bin"
+prepend_path_if_exists "$HOME/fuchsia/.jiri_root/bin"
 prepend_path_if_exists "$HOME/.cargo/bin"
 #prepend_path_if_exists "/opt/anaconda/bin"
 #prepend_path_if_exists "/opt/cuda/bin"
