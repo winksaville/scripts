@@ -301,14 +301,10 @@ prepend_path_if_exists "$HOME/go/bin"
 # For "everyone" on mac's
 prepend_path_if_exists "/usr/local/go/bin"
 
-prepend_path_if_exists "$HOME/fuchsia/.jiri_root/bin"
-prepend_path_if_exists "$HOME/.cargo/bin"
 prepend_path_if_exists "$HOME/prgs/flutter/flutter/bin"
 prepend_path_if_exists "$HOME/.pub-cache/bin"
 prepend_path_if_exists "$HOME/opt/fah"
 prepend_path_if_exists "$HOME/opt/idea-IC/bin"
-prepend_path_if_exists "$HOME/fuchsia/.jiri_root/bin"
-prepend_path_if_exists "$HOME/.cargo/bin"
 #prepend_path_if_exists "/opt/anaconda/bin"
 #prepend_path_if_exists "/opt/cuda/bin"
 #prepend_path_if_exists "$HOME/prgs/flutter/framework/bin"
@@ -409,4 +405,9 @@ alias py-38='conda activate py-38'
 alias py-helix='conda activate py-helix'
 alias py38-helix='conda activate py38-helix'
 
-source "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
+[ -f "$HOME/fuchsia/scripts/fx-env.sh" ] \
+  && source ~/fuchsia/scripts/fx-env.sh \
+  && fx-update-path
+
