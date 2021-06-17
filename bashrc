@@ -407,7 +407,7 @@ alias py38-helix='conda activate py38-helix'
 
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
-[ -f "$HOME/fuchsia/scripts/fx-env.sh" ] \
-  && source ~/fuchsia/scripts/fx-env.sh \
+[ -f "$HOME/fuchsia/fuchsia/scripts/fx-env.sh" ] \
+  && source ~/fuchsia/fuchsia/scripts/fx-env.sh \
   && fx-update-path
 
