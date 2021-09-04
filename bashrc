@@ -8,6 +8,14 @@
 set -o vi
 set -o histexpand
 
+# Have a command following niceit be run a lowest priority, example:
+#     niceit sudo pacman -Syu
+# Useful if it's deseriable for long running tasks to mimimally
+# impact other application/services that maybe running.
+niceit() {
+	ionice -c 3 nice -n 19 $@
+}
+
 # Determine machine we're running on
 # from: https://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux
 unameOut="$(uname -s)"
