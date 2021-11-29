@@ -1,11 +1,126 @@
-Host aur.archlinux.org
-  IdentityFile ~/.ssh/aur
-  User aur
+# Generally Host's have two names the device name such as 3900x and the
+# "ip" name. Which for 3900x is ip101. The 101 is the last decimal byte of
+# it's local address, which for 3900x is 192.168.1.101.
+#
+# In addition another pair of names with the pubic hostname, 23.119.164.150,
+# is also available. So 3900x can be ssh'd into from outside the network with
+# 3900z or ip101z.
+#
+# Examples:
+#
+#   ssh wink@3900x
+#   ssh wink@3900xz
+#
+# or
+#
+#   ssh wink@ip101
+#   ssh wink@ip101z
 
-Host vr-sv1
-  ForwardX11 yes
-  ForwardX11Trusted yes
+#Host aur.archlinux.org
+#  IdentityFile ~/.ssh/aur
+#  User aur
 
-Host vr-sv2
+Host sellserver
+  Hostname 192.241.192.147
+  Port 22
+
+Host 3900x ip101
+  Hostname 192.168.1.101
+  Port 2101
+
+Host 3900xz ip102z
+  Hostname 23.119.164.150
+  Port 2101
+
+Host ethem ip102
+  Hostname 192.168.1.102
+  Port 22
+
+Host ethemz ip102z
+  Hostname 23.119.164.150
+  Port 22
+
+Host hazel 1p103
+  Hostname 192.168.1.103
+  Port 2103
+
+Host hazelz ip103z
+  Hostname 23.119.164.150
+  Port 2103
+
+Host xps15 ip104
+  Hostname 192.168.1.104
+  Port 22
+
+Host ip104z
+  Hostname 23.119.164.150
+  Port 2104
+
+Host ip105
+  Hostname 192.168.1.105
+  Port 22
+
+Host ip105z
+  Hostname 23.119.164.150
+  Port 22
+
+Host ethel ip106
+  Hostname 192.168.1.106
+  Port 2106
+
+Host ethelz ip106z
+  Hostname 23.119.164.150
+  Port 2106
+
+Host robert ip107
+  Hostname 192.168.1.107
+  Port 2107
+
+Host robertz ip107z
+  Hostname 23.119.164.150
+  Port 2107
+
+Host fwlaptop ip108
+  Hostname 192.168.1.108
+  Port 2108
+
+Host fwlaptopz ip108z
+  Hostname 23.119.164.150
+  Port 2108
+
+Host rpi23 ip109
+  Hostname 192.168.1.109
+  Port 2109
+
+Host rpi23z ip109z
+  Hostname 23.119.164.150
+  Port 2109
+
+Host rpi38 ip110
+  Hostname 192.168.1.110
+  Port 2110
+
+Host rpi38z ip110z
+  Hostname 23.119.164.150
+  Port 2110
+
+Host ubuntu-20-04 ip111
+  Hostname 192.168.1.111
+  Port 2111
+
+Host ip111z
+  Hostname 23.119.164.150
+  Port 2111
+
+Host rpi48 ip112
+  Hostname 192.168.1.112
+  Port 2112
+
+Host rpi48z ip112z
+  Hostname 23.119.164.150
+  Port 2112
+
+# Allow X11 forwarding on all hosts so nvim clipboard works
+Host *
   ForwardX11 yes
   ForwardX11Trusted yes
