@@ -120,6 +120,11 @@ Host rpi48z ip112z
   Hostname 23.119.164.150
   Port 2112
 
+# Suppress when doing git operations on github:
+#   X11 forwarding request failed on channel 0
+Host github.com
+  ForwardX11 no
+
 # Allow X11 forwarding on all hosts so nvim clipboard works
 Host *
   ForwardX11 yes
