@@ -195,7 +195,8 @@ if ! shopt -oq posix; then
 fi
 
 alias sudo='sudo '
-alias vi='vim -p $*'
+alias nvi='nvim -p $*'
+alias vi='nvim -p $*'
 alias vim='vim -p $*'
 
 #alias dvpy='conda activate dvpy38'
@@ -204,7 +205,7 @@ alias vim='vim -p $*'
 #export GOBIN="$HOME/prgs/go/bin"
 #export GOROOT="$HOME/foss/go"
 #export GOROOT_FINAL="/opt/go/bin"
-export GO111MODULE="on"
+#export GO111MODULE="on"
 
 export SYSTEMD_EDITOR="vim"
 export VISUAL="vim"
