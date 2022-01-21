@@ -15,6 +15,7 @@ set -o histexpand
 niceit() {
 	ionice -c 3 nice -n 19 $@
 }
+export -f niceit
 
 # Determine machine we're running on
 # from: https://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux
