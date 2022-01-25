@@ -19,6 +19,6 @@ niceit chmod a+x ~/bin/lighthouse-$ver
 # Make curent using remove and copy works even if bn and vc's are running.
 #   See: https://unix.stackexchange.com/questions/404551/overwriting-a-running-executable-or-so
 niceit rm -f ~/bin/lighthouse
-niceit ln -s ~/bin/lighthouse-v2.1.0 ~/bin/lighthouse
+niceit ln -s ~/bin/lighthouse-$ver ~/bin/lighthouse
 
 echo Done
