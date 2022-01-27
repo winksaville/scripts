@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # clone and or update a github repo.
 #
 # Required parameter $1: git repo name like "winksaville" or "seL4"
@@ -8,6 +8,11 @@
 #
 # Optional second parameter $3: is branch, default to "master"
 
+# Enable error options
+set -Eeuo pipefail
+
+# Enable debug
+# set -x
 
 # At least 2 parameters, <upstreamuser> <repo>
 if [ $# -lt 2 ]; then

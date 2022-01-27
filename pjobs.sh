@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
-#
+
+# Enable error options
+set -Eeuo pipefail
+
+# Enable debug
+# set -x
+
 if (( $# < 3 )); then
   echo "Usage: $(basename $0)"
   echo "  $(basename $0) <cmd to execute> <number of parallel jobs> <param1> <param2> ..."

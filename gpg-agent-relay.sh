@@ -2,6 +2,11 @@
 # Launches socat+npiperelay to relay the gpg-agent socket file for use in WSL
 # See https://justyn.io/blog/using-a-yubikey-for-gpg-in-windows-10-wsl-windows-subsystem-for-linux/ for details
 
+# Enable error options
+set -Eeuo pipefail
+
+# Enable debug
+# set -x
 
 
 GPGDIR="${HOME}/.gnupg"

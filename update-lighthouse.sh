@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+# Enable error options
+set -Eeuo pipefail
+
+# Enable debug
 #set -x
 
 if [ $# == 0 ]; then

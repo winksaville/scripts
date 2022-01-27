@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-# Exit on errors
-set -eu -o pipefail
+# Enable error options
+set -Eeuo pipefail
+
+# Enable debug
+#set -x
 
 mkdir -p ~/.config
 mkdir -p ~/.ssh
