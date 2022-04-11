@@ -24,6 +24,10 @@ Host sellserver
   Hostname 192.241.192.147
   Port 22
 
+Host do-sfo3-01
+  Hostname 164.92.118.108
+  Port 22
+
 Host 3900x ip101
   Hostname 192.168.1.101
   Port 2101
