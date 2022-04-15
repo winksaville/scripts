@@ -129,7 +129,7 @@ else
     color_prompt=yes
 fi
 
-DATETIME="date +%y-%m-%dT%H:%M:%S.%3N%z"
+DATETIME="date +%y-%m-%dT%H:%M:%S.%3NZ"
 #if [[ "${machine}" == Linux || "${machine}" == WSL ]]; then
   if [[ "$color_prompt" == yes ]]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\e[0;32m\]\u@\h $(TZ=UTC $DATETIME)\[\e[00m\]:\[\e[01;34m\]\w\[\e[0;36m\]$(__git_ps1 " (%s)")\[\e[00m\]\r\n\$ '
