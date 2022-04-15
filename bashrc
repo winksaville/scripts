@@ -129,11 +129,12 @@ else
     color_prompt=yes
 fi
 
+DATETIME="date +%y-%m-%dT%H:%M:%S.%3N%z"
 #if [[ "${machine}" == Linux || "${machine}" == WSL ]]; then
   if [[ "$color_prompt" == yes ]]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\e[0;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[0;36m\]$(__git_ps1 " (%s)")\[\e[00m\]\r\n\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\e[0;32m\]\u@\h $(TZ=UTC $DATETIME)\[\e[00m\]:\[\e[01;34m\]\w\[\e[0;36m\]$(__git_ps1 " (%s)")\[\e[00m\]\r\n\$ '
   else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 " (%s)")\r\n\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h $(TZ=UTC $DATETIME):\w$(__git_ps1 " (%s)")\r\n\$ '
   fi
 #fi
 unset color_prompt force_color_prompt
@@ -142,7 +143,7 @@ unset color_prompt force_color_prompt
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h $(TC=UTC $DATETIME): \w\a\]$PS1"
     ;;
 *)
     ;;
