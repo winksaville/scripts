@@ -209,8 +209,8 @@ alias vim='vim -p $*'
 #export GOROOT_FINAL="/opt/go/bin"
 #export GO111MODULE="on"
 
-export SYSTEMD_EDITOR="vim"
-export VISUAL="vim"
+export SYSTEMD_EDITOR="vi"
+export VISUAL="vi"
 
 # NODE & NPM env variables
 export npm_config_prefix="$HOME/.npm-globalX"
