@@ -124,6 +124,14 @@ Host rpi48z ip112z
   Hostname 23.119.164.150
   Port 2112
 
+Host imacx ip113
+  Hostname 192.168.1.113
+  Port 22
+
+Host imacx ip113z
+  Hostname 23.119.164.150
+  Port 2113
+
 # Suppress when doing git operations on github:
 #   X11 forwarding request failed on channel 0
 Host github.com
