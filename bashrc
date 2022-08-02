@@ -244,6 +244,7 @@ append_path_if_exists() {
 }
 prepend_path() {
   [ -z "$2" ] && path=PATH || path=$2
+  #echo pp dlr1="$1"
   dlr_path="\$$path"
   #echo pp path=$path
   #echo pp dlr_path=$dlr_path
@@ -252,7 +253,8 @@ prepend_path() {
   [ -z  "$eval_dlr_path" ] && eval "export $path=$1" || eval "export $path=$1:$dlr_path"
 }
 prepend_path_if_exists() {
-  [ -d "$1" ] && prepend_path $1 $2
+  #echo ppife dlr1=$1
+  [ -d "$1" ] && prepend_path "$1" "$2"
 }
 
 if [[ "${machine}" == WSL ]]; then
@@ -265,6 +267,8 @@ fi
 if [[ "${machine}" == Mac ]]; then
 	export mac_arch=$(arch)
 	printf "machine=%s mac_arch=%s\n" $machine $mac_arch
+	prepend_path_if_exists "$HOME/Library/Python/3.8/bin"
+
 	case "${mac_arch}" in
 	    arm64)
 		    echo arm64
@@ -320,6 +324,10 @@ prepend_path_if_exists "$HOME/opt/idea-IC/bin"
 #prepend_path_if_exists "/opt/cuda/bin"
 #prepend_path_if_exists "$HOME/prgs/flutter/framework/bin"
 #prepend_path_if_exists "$HOME/prgs/flutter/framework/.pub-cache/bin"
+
+# MacOS applications
+# Spaces in paths don't work with prepend_path_if_exists if escaped
+prepend_path_if_exists "/Applications/Visual\0x20Studio\0x20Code.app/Contents/Resources/app/bin"
 
 # Update PYTHONPATH, this is needed for meson
 #prepend_path $HOME/opt/lib/python3.5/site-packages PYTHONPATH
