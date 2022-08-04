@@ -303,6 +303,7 @@ prepend_path_if_exists "$HOME/opt/x-tools/i386-unknown-elf/bin"
 prepend_path_if_exists "$HOME/opt/x-tools/arm-unknown-eabi/bin"
 prepend_path_if_exists "$HOME/opt/bin"
 prepend_path_if_exists "$HOME/local/bin"
+prepend_path_if_exists "$HOME/.local/bin"
 #prepend_path_if_exists "$HOME/llvm-clang/bin"
 prepend_path_if_exists "${ANDROID_SDK_ROOT}/bin"
 prepend_path_if_exists "${ANDROID_SDK_ROOT}/tools"
@@ -376,7 +377,7 @@ export CCACHE_DIR=~/.ccache
 # Start gpg-agent
 
 if [[ "${machine}" == WSL ]]; then
-  # If the terminal that actually rung gpg-agne-relay.sh
+  # If the terminal that actually rung gpg-agent-relay.sh
   # is killed then things don't work. Better would be if
   # if was run as a system service. Maybe something like:
   # https://superuser.com/a/1514776/362684
@@ -406,8 +407,11 @@ elif [[ "${machine}" == Mac ]]; then
         fi
 fi
 
-export SSH_AUTH_SOC=`gpgconf --list-dirs agent-ssh-socket`
 export GPG_TTY=$(tty)
+
+# From: >https://opensource.com/article/19/4/gpg-subkeys-ssh
+export SSH_AUTH_SOCK=`gpgconf --list-dirs agent-ssh-socket`
+gpgconf --launch gpg-agent
 
 # Use miniconda3 instead of anaconda and default to conda-forge
 # So on Arch Linux install miniconda3 via [aur](https://aur.archlinux.org/packages/miniconda3/)
