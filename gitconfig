@@ -14,7 +14,7 @@
 [credential]
 	helper = store --file /home/wink/.gitcreds
 [commit]
-	gpgsign = true
+	gpgsign = false
 [gui]
 	warndetachedcommit = true
 [alias]
