@@ -374,44 +374,16 @@ append_path_if_exists $HOME/foss/depot_tools
 
 export CCACHE_DIR=~/.ccache
 
-# Start gpg-agent
-
+# Start ssh-agent
 if [[ "${machine}" == WSL ]]; then
   # If the terminal that actually rung gpg-agent-relay.sh
   # is killed then things don't work. Better would be if
   # if was run as a system service. Maybe something like:
   # https://superuser.com/a/1514776/362684
   ~/scripts/gpg-agent-relay.sh &
-elif [[ "${machine}" == Mac ]]; then
-	case "${mac_arch}" in
-	    arm64)
-		    agent="gpg-agent-mac-arm64-info"
-		    ;;
-
-	    i386)
-		    agent="gpg-agent-mac-i386-info"
-		    ;;
-	    *)
-		    echo other
-		    printf "mac_arch=%s is UNKNOWN\n" $mac_arch
-		    ;;
-	esac
-	agent=gpg-agent.conf
-        if [ -f "~/.gnupg/${agent}" ] && [ -n "$(pgrep gpg-agent)" ]; then
-                echo "current agent=${agent}"
-                source ~.gnupg/${agent}
-                #export GPG_AGENT_INFO
-        else
-                echo new agent="${agent}"
-		eval $(gpg-agent --daemon --enable-ssh-support)
-        fi
+else
+  eval "$(ssh-agent -s)"
 fi
-
-export GPG_TTY=$(tty)
-
-# From: >https://opensource.com/article/19/4/gpg-subkeys-ssh
-export SSH_AUTH_SOCK=`gpgconf --list-dirs agent-ssh-socket`
-gpgconf --launch gpg-agent
 
 # Use miniconda3 instead of anaconda and default to conda-forge
 # So on Arch Linux install miniconda3 via [aur](https://aur.archlinux.org/packages/miniconda3/)
