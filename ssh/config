@@ -37,12 +37,10 @@ Host 3900xz ip102z
   Port 2101
 
 Host ethem ip102
-  ForwardX11Trusted yes
   Hostname 192.168.1.102
   Port 2102
 
 Host ethemz ip102z
-  ForwardX11Trusted yes
   Hostname 23.119.164.150
   Port 2102
 
@@ -127,12 +125,10 @@ Host rpi48z ip112z
   Port 2112
 
 Host imacx ip113
-  ForwardX11Trusted yes
   Hostname 192.168.1.113
   Port 2113
 
 Host imacxz ip113z
-  ForwardX11Trusted yes
   Hostname 23.119.164.150
   Port 2113
 
