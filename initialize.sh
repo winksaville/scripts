@@ -15,6 +15,9 @@ cp ~/scripts/vimrc ~/.vimrc
 cp -r ~/scripts/vim ~/.vim/
 cp -r ~/scripts/nvim ~/.config/
 
+mkdir -p ~/.config/terminator
+cp ~/scripts/config-terminator-config ~/.config/terminator/config
+
 cp ~/scripts/ssh/config ~/.ssh/
 chmod 600 ~/.ssh/config
 
