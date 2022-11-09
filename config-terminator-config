@@ -168,7 +168,7 @@
       order = 1
       profile = default
       uuid = f3fc4476-2714-4447-88e8-09fc8c2e1057
-      command = "ssh kendall@ethel 'journalctl -u validator.service -n 200 -f'"
+      command = "ssh kendall@robert 'journalctl -u validator.service -n 200 -f'"
   [[Ethel-5wins]]
     [[[child0]]]
       type = Window
