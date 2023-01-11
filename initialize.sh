@@ -25,4 +25,5 @@ mkdir -p ~/bin
 cp ~/scripts/update-lighthouse.sh ~/bin/
 cp ~/scripts/remove-all-from-docker.sh ~/bin/
 cp ~/scripts/screensaver-lock-display-off ~/bin/
+cp ~/scripts/mbvc.sh ~/bin
 
