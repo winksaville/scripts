@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
-# Enable error options
-set -Eeuo pipefail
+# Disable error options so we don't have to "install existing package".
+# TODO: Actually we should test the "Already up to date" warning from the
+#       git pull and return from `mp()` early.
+#set -Eeuo pipefail
 
 # Enable debug
 set -x
