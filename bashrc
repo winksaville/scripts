@@ -13,7 +13,7 @@ set -o histexpand
 # Useful if it's deseriable for long running tasks to mimimally
 # impact other application/services that maybe running.
 niceit() {
-	ionice -c 3 nice -n 19 $@
+	ionice -c 3 nice -n 19 "$@"
 }
 export -f niceit
 
