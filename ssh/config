@@ -64,11 +64,11 @@ Host ip104z
 
 Host ip105
   Hostname 192.168.1.105
-  Port 22
+  Port 2105
 
 Host ip105z
   Hostname 23.119.164.150
-  Port 22
+  Port 2105
 
 Host ethel ip106
   Hostname 192.168.1.106
