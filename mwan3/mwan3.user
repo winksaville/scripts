@@ -12,18 +12,31 @@
 #      <ifdown>       Is called by netifd and mwan3track.
 #      <connected>    Is only called by mwan3track if tracking was successful.
 #      <disconnected> Is only called by mwan3track if tracking has failed.
-# $INTERFACE	Name of the interface an action relates to (e.g. "wan" or "wwan").
-# $DEVICE	Physical device name of the interface the action relates to (e.g. "eth0" or "wwan0").
+# $INTERFACE	Name of the interface an action relates to {e.g. "wan" or "wwan".
+# $DEVICE	Physical device name of the interface the action relates to {e.g. "eth0" or "wwan0".
 #               Note: On an ifdown event, $DEVICE is not available, use $INTERFACE instead.
 #
 # Further documentation can be found here:
 # https://openwrt.org/docs/guide-user/network/wan/multiwan/mwan3#alertsnotifications
 
-DATE=`/root/date-utc-nlf.sh`
-INFO="[${DATE}]: ${HOSTNAME} ${ACTION} ${INTERFACE} ${DEVICE}"
-SUBJECT="${INFO}"
-MESSAGE="Body: ${INFO}"
+DATE() {
+  echo `/root/date-utc-nlf.sh`
+}
 
-echo "${INFO}" >> /root/mwan3.user.messages
-(/bin/sleep 10; /root/mail-wink.sh wink@saville.com "${SUBJECT}" "${MESSAGE}") > /dev/null &
-(/bin/sleep 10; /root/mail-wink.sh 8312342134@msg.fi.google.com "${INFO}") > /dev/null &
+DBG() {
+  echo "$(DATE)-$1" >> /root/mwan3.user.messages
+}
+
+#DBG "1 STARTING without nohup: $0"
+
+# Using `nohup` was ment to allow for long sleeps, 30secs to 2min, when
+# trying to send messages. I.e. if the diconntion was short enough we
+# it might connect duing the sleeps and the message would get out. Alas,
+# using `nohup` doesn't allow mwan3 to actually contine as mwan3.user is
+# never called until the sleeps complete. So the line below isn't useful:
+#(nohup /root/mwan3.process.sh $ACTION $INTERFACE $DEVICE &) > /dev/null 2>&1 &
+
+# Instead just do the work directly:
+/root/mwan3.process.sh $ACTION $INTERFACE $DEVICE &
+
+#DBG "3 EXITING: $0"
