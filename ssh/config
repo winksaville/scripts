@@ -70,13 +70,13 @@ Host ip105z
   Hostname 23.119.164.150
   Port 2105
 
-Host ethel ip106
-  Hostname 192.168.1.106
-  Port 2106
-
-Host ethelz ip106z
-  Hostname 23.119.164.150
-  Port 2106
+#Host ethel ip106
+#  Hostname 192.168.1.106
+#  Port 2106
+#
+#Host ethelz ip106z
+#  Hostname 23.119.164.150
+#  Port 2106
 
 Host robert ip107
   Hostname 192.168.1.107
