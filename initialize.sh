@@ -27,4 +27,10 @@ cp ~/scripts/remove-all-from-docker.sh ~/bin/
 cp ~/scripts/screensaver-lock-display-off ~/bin/
 cp ~/scripts/mbvc.sh ~/bin
 
-[ -f /etc/chrony.conf ] && sudo cp ~/scripts/chrony.conf.use-rpi38 /etc/chrony.conf
+# rpi38 is the time server and and a different file is used
+[[ "$HOSTNAME" = "rpi38" && -f /etc/chrony.conf ]] && ( echo "rpi38 1"; sudo cp ~/scripts/chrony.conf.rpi38 /etc/chrony.conf )
+[[ "$HOSTNAME" = "rpi38" && -f /etc/chrony/chrony.conf ]] && (echo "rpi38 2"; sudo cp ~/scripts/chrony.conf.rpi38 /etc/chrony/chrony.conf )
+
+# All other devices "use-rpi38"
+[[ "$HOSTNAME" != "rpi38" && -f /etc/chrony.conf ]] && ( echo "use-rpi38 1"; sudo cp ~/scripts/chrony.conf.use-rpi38 /etc/chrony.conf )
+[[ "$HOSTNAME" != "rpi38" && -f /etc/chrony/chrony.conf ]] && ( echo "use-rpi38 2"; sudo cp ~/scripts/chrony.conf.use-rpi38 /etc/chrony/chrony.conf )
