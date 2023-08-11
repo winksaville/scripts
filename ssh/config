@@ -102,13 +102,13 @@ Host rpi23z ip109z
   Hostname 23.119.164.150
   Port 2109
 
-Host rpi38 ip110
-  Hostname 192.168.1.110
-  Port 2110
-
-Host rpi38z ip110z
-  Hostname 23.119.164.150
-  Port 2110
+#Host rpi38 ip110
+#  Hostname 192.168.1.110
+#  Port 2110
+#
+#Host rpi38z ip110z
+#  Hostname 23.119.164.150
+#  Port 2110
 
 Host ubuntu-20-04 ip111
   Hostname 192.168.1.111

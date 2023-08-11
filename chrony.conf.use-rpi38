@@ -1,0 +1,50 @@
+# Get only 1 source from various places; see Lighthouse discord channel:
+# https://discord.com/channels/605577013327167508/605577013331361793/900287952465317918
+#server 23.119.164.150         iburst
+server rpi38                  iburst
+pool 3.arch.pool.ntp.org      iburst maxsources 1
+pool time.cloudflare.com      iburst maxsources 1
+pool time.facebook.com        iburst maxsources 1
+pool time.windows.com         iburst maxsources 1
+pool time.google.com          iburst maxsources 1
+pool time.apple.com           iburst maxsources 1
+
+
+# This directive specify the location of the file containing ID/key pairs for
+# NTP authentication.
+keyfile /etc/chrony/chrony.keys
+
+
+# This directive specify the file into which chronyd will store the rate
+# information.
+driftfile /var/lib/chrony/chrony.drift
+
+
+# Uncomment the following line to turn logging on.
+#log tracking measurements statistics
+
+
+# Log files location.
+logdir /var/log/chrony
+
+
+# If the system timezone database is kept up to date and includes the
+# right/UTC timezone, chronyd can use it to determine the current
+# TAI-UTC offset and when will the next leap second occur.
+
+
+leapsectz right/UTC
+
+
+# Stop bad estimates upsetting machine clock.
+maxupdateskew 5.0
+
+
+# This directive enables kernel synchronisation (every 11 minutes) of the
+# real-time clock. Note that it can’t be used along with the 'rtcfile' directive.
+rtcsync
+
+
+# Step the system clock instead of slewing it if the adjustment is larger than
+# one second, but only in the first three clock updates.
+makestep 0.1 -1

@@ -1,0 +1,95 @@
+# From: 
+#    https://wiki.archlinux.org/title/dnsmasq
+#    https://www.linux.com/training-tutorials/dnsmasq-easy-lan-name-services/
+
+# Configuration file for dnsmasq.
+#
+# Format is one option per line, legal options are the same
+# as the long options legal on the command line. See
+# "/usr/sbin/dnsmasq --help" or "man 8 dnsmasq" for details.
+
+# Listen on this specific port instead of the standard DNS port
+# (53). Setting this to zero completely disables DNS function,
+# leaving only DHCP and/or TFTP.
+#port=5353
+
+# The following two options make you a better netizen, since they
+# tell dnsmasq to filter out queries which the public DNS cannot
+# answer, and which load the servers (especially the root servers)
+# unnecessarily. If you have a dial-on-demand link they also stop
+# these requests from bringing up the link unnecessarily.
+
+# Never forward plain names (without a dot or domain part)
+domain-needed
+# Never forward addresses in the non-routed address spaces.
+bogus-priv
+
+# For debugging purposes, log each DNS query as it passes through
+# dnsmasq.
+log-queries
+
+# Log lots of extra information about DHCP transactions.
+#log-dhcp
+
+
+# If you don't want dnsmasq to read /etc/resolv.conf or any other
+# file, getting its servers from this file instead (see below), then
+# uncomment this.
+no-resolv  # I'm hoping this supresses the warning `ignoring nameserver 127.0.0.1 - local interface` I see in logs.
+
+# Add other name servers here, with domain specs if they are for
+# non-public domains.
+#server=/localnet/192.168.0.1
+server=8.8.8.8  # Google
+server=9.9.9.9  # Quad9
+
+# Name of the this lan's doman so `ping rpi23.lan` works
+local=/lan/
+domain=lan
+expand-hosts
+#listen-address=::1,127.0.0.1,192.168.1.109
+#bind-interfaces
+#cache-size=1000
+#conf-file=/usr/share/dnsmasq/trust-anchors.conf
+#dnssec
+
+# static 2 .. 19
+dhcp-host=E0:46:EE:10:58:CC,192.168.1.9,gs108e_cc
+dhcp-host=A0:04:60:14:9A:41,192.168.1.10,orbi-main
+dhcp-host=A0:04:60:16:BE:3E,192.168.1.11,orbi-satellite
+
+# Unused 20 .. 89
+
+# Static 90 .. 119
+dhcp-host=00:1B:A9:10:D1:8E,192.168.1.95,brother-printer
+dhcp-host=08:3E:8E:7B:F9:10,192.168.1.96,hp-printer-downstairs
+dhcp-host=00:11:32:5a:e8:47,192.168.1.99,saville-nas
+dhcp-host=38:2C:4A:6D:E2:08,192.168.1.100,old-desktop
+dhcp-host=70:85:C2:F1:0F:CA,192.168.1.101,3900x
+dhcp-host=4C:20:B8:AA:49:7C,192.168.1.102,ethem
+dhcp-host=1C:69:7A:A1:51:61,192.168.1.103,hazel
+dhcp-host=9C:B6:D0:B6:80:1B,192.168.1.104,xps15-wifi
+dhcp-host=00:05:1B:B0:6F:F0,192.168.1.105,j5-usb-eth
+dhcp-host=1C:69:7A:A0:2E:0B,192.168.1.106,ethel
+dhcp-host=1C:69:7A:A7:A7:2C,192.168.1.107,robert
+dhcp-host=54:14:F3:52:43:E2,192.168.1.108,fwlaptop-wifi
+dhcp-host=b8:27:eb:73:ae:23,192.168.1.109,rpi23
+#dhcp-host=b8:27:eb:09:b2:38,192.168.1.110,rpi38
+dhcp-host=08:00:27:06:d3:4e,192.168.1.111,ubuntu-20-04-3
+dhcp-host=e4:5f:01:5d:cb:48,192.168.1.112,rpi48
+dhcp-host=D0:81:7A:D5:B8:1D,192.168.1.113
+dhcp-host=08:00:27:4f:49:13,192.168.1.114,ubuntu-22-04
+dhcp-host=30:23:03:05:35:51,192.168.1.115,bk-usbc-eth
+
+# Unused 120 .. 149
+
+# Dynamic 150 .. 250
+dhcp-range=192.168.1.150,192.168.1.250,12h
+dhcp-option=option:router,192.168.1.1
+#dhcp-option=option:dns-server,192.168.1.109,8.8.8.8 # Address of this device, rpi23 plus other
+dhcp-option=option:dns-server,192.168.1.109 # Address of this device, rpi23 plus other
+#dhcp-option=option:dns-server,8.8.8.8
+#dhcp-option=option:dns-server,9.9.9.9
+
+# Unused 251 .. 254
+
