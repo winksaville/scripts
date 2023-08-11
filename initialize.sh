@@ -27,3 +27,4 @@ cp ~/scripts/remove-all-from-docker.sh ~/bin/
 cp ~/scripts/screensaver-lock-display-off ~/bin/
 cp ~/scripts/mbvc.sh ~/bin
 
+[ -f /etc/chrony.conf ] && sudo cp ~/scripts/chrony.conf.use-rpi38 /etc/chrony.conf
