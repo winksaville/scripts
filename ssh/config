@@ -28,13 +28,13 @@ Host do-sfo3-01
   Hostname 164.92.118.108
   Port 22
 
-Host 3900x ip101
-  Hostname 192.168.1.101
-  Port 2101
-
-Host 3900xz ip102z
-  Hostname 23.119.164.150
-  Port 2101
+#Host 3900x ip101
+#  Hostname 192.168.1.101
+#  Port 2101
+#
+#Host 3900xz ip102z
+#  Hostname 23.119.164.150
+#  Port 2101
 
 Host ethem ip102
   ForwardX11Trusted yes
