@@ -94,13 +94,13 @@ Host fwlaptopz ip108z
   Hostname 23.119.164.150
   Port 2108
 
-Host rpi23 ip109
-  Hostname 192.168.1.109
-  Port 2109
-
-Host rpi23z ip109z
-  Hostname 23.119.164.150
-  Port 2109
+#Host rpi23 ip109
+#  Hostname 192.168.1.109
+#  Port 2109
+#
+#Host rpi23z ip109z
+#  Hostname 23.119.164.150
+#  Port 2109
 
 #Host rpi38 ip110
 #  Hostname 192.168.1.110
