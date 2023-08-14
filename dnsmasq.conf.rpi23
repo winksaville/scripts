@@ -61,25 +61,24 @@ dhcp-host=A0:04:60:16:BE:3E,192.168.1.11,orbi-satellite
 # Unused 20 .. 89
 
 # Static 90 .. 119
-dhcp-host=00:1B:A9:10:D1:8E,192.168.1.95,brother-printer
-dhcp-host=08:3E:8E:7B:F9:10,192.168.1.96,hp-printer-downstairs
-dhcp-host=00:11:32:5a:e8:47,192.168.1.99,saville-nas
-dhcp-host=38:2C:4A:6D:E2:08,192.168.1.100,old-desktop
-dhcp-host=70:85:C2:F1:0F:CA,192.168.1.101,3900x
-dhcp-host=4C:20:B8:AA:49:7C,192.168.1.102,ethem
+#dhcp-host=00:1B:A9:10:D1:8E,192.168.1.95,brother-printer
+#dhcp-host=08:3E:8E:7B:F9:10,192.168.1.96,hp-printer-downstairs
+#dhcp-host=00:11:32:5a:e8:47,192.168.1.99,saville-nas
+#dhcp-host=38:2C:4A:6D:E2:08,192.168.1.100,old-desktop
+#dhcp-host=70:85:C2:F1:0F:CA,192.168.1.101,3900x
+#dhcp-host=4C:20:B8:AA:49:7C,192.168.1.102,ethem
 dhcp-host=1C:69:7A:A1:51:61,192.168.1.103,hazel
-dhcp-host=9C:B6:D0:B6:80:1B,192.168.1.104,xps15-wifi
-dhcp-host=00:05:1B:B0:6F:F0,192.168.1.105,j5-usb-eth
+#dhcp-host=9C:B6:D0:B6:80:1B,192.168.1.104,xps15
 #dhcp-host=1C:69:7A:A0:2E:0B,192.168.1.106,ethel
 dhcp-host=1C:69:7A:A7:A7:2C,192.168.1.107,robert
-dhcp-host=54:14:F3:52:43:E2,192.168.1.108,fwlaptop-wifi
+#dhcp-host=54:14:F3:52:43:E2,192.168.1.108,fwlaptop
 dhcp-host=b8:27:eb:73:ae:23,192.168.1.109,rpi23
 #dhcp-host=b8:27:eb:09:b2:38,192.168.1.110,rpi38
-dhcp-host=08:00:27:06:d3:4e,192.168.1.111,ubuntu-20-04-3
-dhcp-host=e4:5f:01:5d:cb:48,192.168.1.112,rpi48
-dhcp-host=D0:81:7A:D5:B8:1D,192.168.1.113
-dhcp-host=08:00:27:4f:49:13,192.168.1.114,ubuntu-22-04
-dhcp-host=30:23:03:05:35:51,192.168.1.115,bk-usbc-eth
+#dhcp-host=08:00:27:06:d3:4e,192.168.1.111,ubuntu-20-04-3
+#dhcp-host=e4:5f:01:5d:cb:48,192.168.1.112,rpi48
+#dhcp-host=D0:81:7A:D5:B8:1D,192.168.1.113
+#dhcp-host=08:00:27:4f:49:13,192.168.1.114,ubuntu-22-04
+
 
 # Unused 120 .. 149
 
@@ -87,9 +86,14 @@ dhcp-host=30:23:03:05:35:51,192.168.1.115,bk-usbc-eth
 dhcp-range=192.168.1.150,192.168.1.250,12h
 dhcp-option=option:router,192.168.1.1
 #dhcp-option=option:dns-server,192.168.1.109,8.8.8.8 # Address of this device, rpi23 plus other
-dhcp-option=option:dns-server,192.168.1.109 # Address of this device, rpi23 plus other
+dhcp-option=option:dns-server,192.168.1.109 # Address of this device
 #dhcp-option=option:dns-server,8.8.8.8
 #dhcp-option=option:dns-server,9.9.9.9
+
+# Dynamic with hopefully hostname assigned by dnsmasq
+dhcp-host=00:05:1B:B0:6F:F0,j5-usb-eth
+dhcp-host=30:23:03:05:35:51,bk-usbc-eth
+dhcp-host=A0:CE:C8:79:4A:95,pwr-bk-usbc-eth
 
 # Unused 251 .. 254
 
