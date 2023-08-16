@@ -25,10 +25,6 @@ Host do-sfo3-01
   Hostname 164.92.118.108
   Port 22
 
-Host robert ip107
-  Hostname 192.168.1.107
-  Port 2107
-
 # Suppress when doing git operations on github:
 #   X11 forwarding request failed on channel 0
 Host github.com

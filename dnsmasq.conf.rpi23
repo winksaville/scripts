@@ -26,7 +26,7 @@ bogus-priv
 
 # For debugging purposes, log each DNS query as it passes through
 # dnsmasq.
-log-queries
+#log-queries
 
 # Log lots of extra information about DHCP transactions.
 #log-dhcp
@@ -43,7 +43,8 @@ no-resolv  # I'm hoping this supresses the warning `ignoring nameserver 127.0.0.
 server=8.8.8.8  # Google
 server=9.9.9.9  # Quad9
 
-# Name of the this lan's doman so `ping rpi23.lan` works
+# Name of the this lan's domain so `ping rpi23.lan` works.
+# In general, `.lan` is not needed and `ping rpi23` | `ssh rpi23` is sufficient.
 local=/lan/
 domain=lan
 expand-hosts
@@ -61,8 +62,7 @@ dhcp-host=A0:04:60:16:BE:3E,192.168.1.11,orbi-satellite
 # Unused 20 .. 89
 
 # Static 90 .. 119
-dhcp-host=1C:69:7A:A7:A7:2C,192.168.1.107,robert
-dhcp-host=b8:27:eb:73:ae:23,192.168.1.109,rpi23
+dhcp-host=b8:27:eb:73:ae:23,192.168.1.109,rpi23 # This LANS DNS & DHCP server using dnsmasq
 
 
 # Unused 120 .. 149
@@ -76,9 +76,9 @@ dhcp-option=option:dns-server,192.168.1.109 # Address of this device
 #dhcp-option=option:dns-server,9.9.9.9
 
 # Dynamic with hopefully hostname assigned by dnsmasq
-dhcp-host=00:05:1B:B0:6F:F0,j5-usb-eth
-dhcp-host=30:23:03:05:35:51,bk-usbc-eth
-dhcp-host=A0:CE:C8:79:4A:95,pwr-bk-usbc-eth
+dhcp-host=00:05:1B:B0:6F:F0,j5  # j5-create RJ45 ethernet adapter
+dhcp-host=30:23:03:05:35:51,bk  # bk-usbc RJ45 ethernet adapter
+dhcp-host=A0:CE:C8:79:4A:95,pwr # bk-usbc with RJ45 ethernet adapter + PD usbc
 
 # Unused 251 .. 254
 
