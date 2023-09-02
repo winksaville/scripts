@@ -30,6 +30,12 @@ class=$class_default
 usage() {
   echo "Usage: $0 [OPTIONS]"
   echo
+  echo "Note: You may have to stop NetworkManager using:"
+  echo "  sudo systemctl stop NetworkManager.service"
+  echo "Later start it:"
+  echo "  sudo systemctl start NetworkManager.service"
+  echo "Or reboot"
+  echo
   echo "Options:"
   echo "  dev=<dev name>      Name of device such as 'enp0s13f0u3', REQUIRED"
   echo "  addr=<IPv4 addr>    IPv4 address, default $addr_default"
