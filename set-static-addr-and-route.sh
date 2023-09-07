@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 # or /bin/sh for a "portable" shebang
 #
-# This is used to set the address of a linux box
-# connected to LAN 1 of an OpenWRT router that's
+# This is used to set the static address and gateway of a linux computer.
+# Initial use is to connect to linux computer to a OpenWRT router that's
 # in "failsafe mode" (https://openwrt.org/docs/guide-user/troubleshooting/failsafe_and_factory_reset)
+# and that's why addr_gateway_default is 192.168.1.1.
+#
 # Note:
 #   On my TpLink Archer A7 1750 the "button" referred to in the above page
 #   is the 'WPS/WiFi On/Off' switch.
@@ -20,11 +22,12 @@ set -eo pipefail
 # Default values
 addr_default=192.168.1.2
 class_default=24
-addr_default_gateway=192.168.1.1
+addr_gateway_default=192.168.1.1
 
 # Initialize variables, dev is required
 dev=
 addr=$addr_default
+addr_gateway=$addr_gateway_default
 class=$class_default
 
 usage() {
@@ -37,10 +40,11 @@ usage() {
   echo "Or reboot"
   echo
   echo "Options:"
-  echo "  dev=<dev name>      Name of device such as 'enp0s13f0u3', REQUIRED"
-  echo "  addr=<IPv4 addr>    IPv4 address, default $addr_default"
-  echo "  class=<IPv4 class>  Class such as 24, default $class_default"
-  echo "  help                Show this help message"
+  echo "  dev=<dev name>            Name of device such as 'enp0s13f0u3', REQUIRED"
+  echo "  addr=<IPv4 addr>          IPv4 address, default $addr_default"
+  echo "  class=<IPv4 class>        Class such as 24, default $class_default"
+  echo "  addr_gateway=<IPv4 addr>  IPv4 address of gateway, default $addr_gateway_default"
+  echo "  help                      Show this help message"
   echo
   echo "Example:"
   echo "  $0 addr=192.168.1.3 dev=eth0"
@@ -78,6 +82,9 @@ parse_arguments() {
         ;;
       class)
         class="$value"
+        ;;
+      addr_gateway)
+        addr_gateway="$value"
         ;;
       help)
         usage
@@ -189,8 +196,8 @@ set_interface_state $dev up 4000 || { echo "Could not UP $dev"; exit 1; }
 #ip a show $dev
 
 # Set default route
-echo add default route via $addr_default_gateway dev $dev
-sudo ip route add default via $addr_default_gateway dev $dev
+echo add default route via $addr_gateway dev $dev
+sudo ip route add default via $addr_gateway dev $dev
 ##ip a show $dev
 ##ip r
 
