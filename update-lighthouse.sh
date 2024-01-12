@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Enable error options
-set -Eeuo pipefail
+# Enable error options, but don't error on exit, i.e. no -e
+set -Euo pipefail
 
 # Enable debug
 #set -x
@@ -14,9 +14,47 @@ fi
 # Parameter 1 is the version
 ver=$1
 
-# Get the tar, untar and make the file executable
-niceit curl -f -L https://github.com/sigp/lighthouse/releases/download/$ver/lighthouse-$ver-x86_64-unknown-linux-gnu.tar.gz -o ~/bin/lighthouse-$ver-x86_64-unknown-linux-gnu.tar.gz
-niceit tar -xf ~/bin/lighthouse-$ver-x86_64-unknown-linux-gnu.tar.gz -O > ~/bin/lighthouse-$ver
+# Get a file and extract
+# $1 = filename
+# $2 = extension
+function get_file_and_extract () {
+  file_name=$1
+  extension=$2
+  full_file_name=$file_name-x86_64-unknown-linux-gnu$extension
+  niceit curl -f -L https://github.com/sigp/lighthouse/releases/download/$ver/$full_file_name -o ~/bin/$full_file_name
+  rslt=$?
+  #echo "rslt=$rslt"
+  if [ $rslt -eq 0 ]; then
+    echo "success $full_file_name downloaded"
+    niceit tar -xf ~/bin/$full_file_name -O > ~/bin/$file_name
+    rslt=$?
+    if [ $rslt -eq 0 ]; then
+      echo "success extracted $full_file_name to $file_name"
+      return 0
+    else
+      echo "Couldn't extract $full_file_name rslt=$rslt"
+      return $rslt
+    fi
+  else
+    echo "curl failed getting $full_file_name rslt=$rslt"
+    return $rslt
+  fi
+}
+
+# Try .tar.gz first
+get_file_and_extract lighthouse-$ver .tar.gz
+rslt=$?
+if [ $rslt -ne 0 ]; then
+  # Try just ".tar" extension
+  get_file_and_extract lighthouse-$ver .tar
+  rslt=$?
+  if [ $rslt -ne 0 ]; then
+    exit $?
+  fi
+fi
+
+# Enable exit on error
+set -e
 niceit chmod a+x ~/bin/lighthouse-$ver
 
 # Make curent using remove and copy works even if bn and vc's are running.
