@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Enable error options
-set -Eeuo pipefail
+set -Euo pipefail
 
 # Enable debug
 #set -x
@@ -17,7 +17,11 @@ ver=$1
 
 failed=`niceit journalctl -u beacon-chain.service --since "$1" | rg "attestation.*failed" | wc -l`
 success=`niceit journalctl -u beacon-chain.service --since "$1" | rg "attestation.*success" | wc -l`
-ratio=`echo "scale=2; $failed/$success" | bc`
+fs_ratio=`echo "scale=2; $failed/$success" | bc`
 
-echo ratio:$ratio = failed:$failed / success:$success
+missing=`niceit journalctl -u beacon-chain.service --since "$1" | rg "attestation.*missing" | wc -l`
+ms_ratio=`echo "scale=2; $missing/$success" | bc`
+
+echo ms_ratio:$ms_ratio = missing:$missing / success:$success
+echo fs_ratio:$fs_ratio = failed:$failed / success:$success
 
