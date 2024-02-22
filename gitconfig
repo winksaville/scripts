@@ -1,7 +1,13 @@
 [user]
 	email = wink@saville.com
 	name = Wink Saville
-	signingkey = 0xD232788D248BCF0E
+	signingkey = /home/wink/.ssh/git-commits-wink@saville.com.pub
+[gpg "ssh"]
+	allowedSignersFile = ~/.ssh/git-commits-allowed-signers
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
 [core]
 	excludesfile = /home/wink/.gitignore
 [color]
@@ -13,8 +19,6 @@
 	smtpUser = wink@saville.com
 [credential]
 	helper = store --file /home/wink/.gitcreds
-[commit]
-	gpgsign = false
 [gui]
 	warndetachedcommit = true
 [alias]

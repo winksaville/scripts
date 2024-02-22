@@ -18,8 +18,9 @@ cp -r ~/scripts/nvim ~/.config/
 mkdir -p ~/.config/terminator
 cp ~/scripts/config-terminator-config ~/.config/terminator/config
 
-cp ~/scripts/ssh/config ~/.ssh/
+cp ~/scripts/ssh/* ~/.ssh/
 chmod 600 ~/.ssh/config
+echo "From 'important/git-commit-keys/*' copy to ~/.ssh/ and 'ssh-add ~/.ssh/git-commits-wink@saville.com'"
 
 mkdir -p ~/bin
 cp ~/scripts/update-lighthouse.sh ~/bin/
@@ -35,3 +36,4 @@ cp ~/scripts/missing-failed-success-ratio.sh ~/bin
 # All other devices "use-rpi38"
 [[ "$HOSTNAME" != "rpi38" && -f /etc/chrony.conf ]] && ( echo "use-rpi38 1"; sudo cp ~/scripts/chrony.conf.use-rpi38 /etc/chrony.conf )
 [[ "$HOSTNAME" != "rpi38" && -f /etc/chrony/chrony.conf ]] && ( echo "use-rpi38 2"; sudo cp ~/scripts/chrony.conf.use-rpi38 /etc/chrony/chrony.conf )
+
