@@ -20,7 +20,8 @@ cp ~/scripts/config-terminator-config ~/.config/terminator/config
 
 cp ~/scripts/ssh/* ~/.ssh/
 chmod 600 ~/.ssh/config
-echo "copy important/git-commit-keys to .ssh/ 'cp ~/<path/to/git-commit-keys/* ~/.ssh/'"
+echo "Copy important/git-commit-keys to ~/.ssh/ 'cp ~/<path/to/git-commit-keys/* ~/.ssh/'"
+echo "and update private key permissions 'chmod 600 ~/.ssh/git-commits-wink@saville.com'"
 
 mkdir -p ~/bin
 cp ~/scripts/update-lighthouse.sh ~/bin/
