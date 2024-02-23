@@ -20,7 +20,7 @@ cp ~/scripts/config-terminator-config ~/.config/terminator/config
 
 cp ~/scripts/ssh/* ~/.ssh/
 chmod 600 ~/.ssh/config
-echo "From 'important/git-commit-keys/*' copy to ~/.ssh/ and 'ssh-add ~/.ssh/git-commits-wink@saville.com'"
+echo "copy important/git-commit-keys to .ssh/ 'cp ~/<path/to/git-commit-keys/* ~/.ssh/'"
 
 mkdir -p ~/bin
 cp ~/scripts/update-lighthouse.sh ~/bin/
@@ -30,10 +30,10 @@ cp ~/scripts/mbvc.sh ~/bin
 cp ~/scripts/missing-failed-success-ratio.sh ~/bin
 
 # rpi38 is the time server and and a different file is used
-[[ "$HOSTNAME" = "rpi38" && -f /etc/chrony.conf ]] && ( echo "rpi38 1"; sudo cp ~/scripts/chrony.conf.rpi38 /etc/chrony.conf )
-[[ "$HOSTNAME" = "rpi38" && -f /etc/chrony/chrony.conf ]] && (echo "rpi38 2"; sudo cp ~/scripts/chrony.conf.rpi38 /etc/chrony/chrony.conf )
+[[ "$HOSTNAME" = "rpi38" && -f /etc/chrony.conf ]] && ( sudo cp ~/scripts/chrony.conf.rpi38 /etc/chrony.conf )
+[[ "$HOSTNAME" = "rpi38" && -f /etc/chrony/chrony.conf ]] && ( sudo cp ~/scripts/chrony.conf.rpi38 /etc/chrony/chrony.conf )
 
 # All other devices "use-rpi38"
-[[ "$HOSTNAME" != "rpi38" && -f /etc/chrony.conf ]] && ( echo "use-rpi38 1"; sudo cp ~/scripts/chrony.conf.use-rpi38 /etc/chrony.conf )
-[[ "$HOSTNAME" != "rpi38" && -f /etc/chrony/chrony.conf ]] && ( echo "use-rpi38 2"; sudo cp ~/scripts/chrony.conf.use-rpi38 /etc/chrony/chrony.conf )
+[[ "$HOSTNAME" != "rpi38" && -f /etc/chrony.conf ]] && ( sudo cp ~/scripts/chrony.conf.use-rpi38 /etc/chrony.conf )
+[[ "$HOSTNAME" != "rpi38" && -f /etc/chrony/chrony.conf ]] && ( sudo cp ~/scripts/chrony.conf.use-rpi38 /etc/chrony/chrony.conf )
 
