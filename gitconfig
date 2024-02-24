@@ -1,7 +1,7 @@
 [user]
 	email = wink@saville.com
 	name = Wink Saville
-	signingkey = /home/wink/.ssh/git-commits-wink@saville.com.pub
+	signingkey = ~/.ssh/git-commits-wink@saville.com.pub
 [gpg "ssh"]
 	allowedSignersFile = ~/.ssh/git-commits-allowed-signers
 [gpg]
@@ -9,7 +9,7 @@
 [commit]
 	gpgsign = true
 [core]
-	excludesfile = /home/wink/.gitignore
+	excludesfile = ~/.gitignore
 [color]
 	ui = auto
 [sendemail]
@@ -18,7 +18,7 @@
         smtpServerPort = 587
 	smtpUser = wink@saville.com
 [credential]
-	helper = store --file /home/wink/.gitcreds
+	helper = store --file ~/.gitcreds
 [gui]
 	warndetachedcommit = true
 [alias]
@@ -26,7 +26,7 @@
 	delmaster = !git xdeletemaster && git submodule foreach 'git delmaster'
 	sync = !git pull origin master && git submodule sync --recursive && git submodule update --init --recursive
 [http]
-	cookiefile = /home/wink/.gitcookies
+	cookiefile = ~/.gitcookies
 [merge]
 	conflictstyle = diff3
 [pull]
