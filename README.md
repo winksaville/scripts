@@ -37,3 +37,8 @@ cp ~/scripts/remove-all-from-docker.sh ~/bin/
 cp ~/scripts/screensaver-lock-display-off ~/bin/
 ```
 
+## Files
+
+Todo create a table :)
+
+grub-mkconfig.arch-linux-etc-default -> Contents of /etc/default/grub on my 3900x machine
