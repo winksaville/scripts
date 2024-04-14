@@ -70,6 +70,10 @@ source ~/scripts/git-prompt.sh
 # Add ninja completion
 source ~/scripts/ninja-bash-completion
 
+# Add Kurtosis completion
+source <(kurtosis completion bash)
+complete -F __start_kurtosis kt
+
 command -v keychain > /dev/null 2>&1 && eval `keychain --nogui --eval id_rsa`
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -162,6 +166,7 @@ if (( $? == 0 )); then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+    alias kt='kurtosis'
 fi
 
 # colored GCC warnings and errors

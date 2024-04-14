@@ -15,6 +15,7 @@ mp () {
 	cd ..
 }
 
+mp kurtosis-cli-bin
 mp brave-bin
 mp visual-studio-code-bin
 mp google-chrome
