@@ -4,6 +4,9 @@
 " Use vim-plug as plugin manager
 "    https://github.com/junegunn/vim-plug
 
+" Default to nowrap
+set nowrap
+
 " Automatically add vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
