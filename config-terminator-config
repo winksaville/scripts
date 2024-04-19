@@ -1,4 +1,5 @@
 [global_config]
+  handle_size = 9
   suppress_multiple_term_dialog = True
 [keybindings]
 [profiles]
@@ -291,6 +292,148 @@
       profile = default
       uuid = bff12c33-d167-4ae9-955e-a535ec312cb1
       command = "ssh kendall@ethel 'journalctl -u reth.service -n 200 -f'"
+    [[[child7]]]
+      type = VPaned
+      parent = child5
+      order = 1
+      position = 344
+      ratio = 0.5119047619047619
+    [[[terminal8]]]
+      type = Terminal
+      parent = child7
+      order = 0
+      profile = default
+      uuid = 9c0028b1-6fab-4073-b320-5a0abff21218
+      command = "ssh kendall@ethel 'journalctl -u beacon-chain.service -n 200 -f'"
+    [[[terminal9]]]
+      type = Terminal
+      parent = child7
+      order = 1
+      profile = default
+      uuid = f3fc4476-2714-4447-88e8-09fc8c2e1057
+      command = "ssh kendall@ethel 'journalctl -u validator.service -n 200 -f'"
+  [[Ethel-reth-panic-on-insertblockerror-5wins]]
+    [[[child0]]]
+      type = Window
+      parent = ""
+      order = 0
+      position = 588:894
+      maximised = False
+      fullscreen = False
+      size = 2818, 1366
+      title = kendall@ethel: ~
+      last_active_term = 375d0cef-6f80-4dd0-a25e-eb8a485ca0a5
+      last_active_window = True
+    [[[child1]]]
+      type = VPaned
+      parent = child0
+      order = 0
+      position = 440
+      ratio = 0.3232916972814107
+    [[[child2]]]
+      type = HPaned
+      parent = child1
+      order = 0
+      position = 1407
+      ratio = 0.5001777461784571
+    [[[terminal3]]]
+      type = Terminal
+      parent = child2
+      order = 0
+      profile = default
+      uuid = 375d0cef-6f80-4dd0-a25e-eb8a485ca0a5
+      command = ssh kendall@ethel
+    [[[terminal4]]]
+      type = Terminal
+      parent = child2
+      order = 1
+      profile = default
+      uuid = 5c2d197e-65db-438f-a17c-855fc0abd838
+      command = ssh kendall@ethel
+    [[[child5]]]
+      type = VPaned
+      parent = child1
+      order = 1
+      position = 239
+      ratio = 0.2609170305676856
+    [[[terminal6]]]
+      type = Terminal
+      parent = child5
+      order = 0
+      profile = default
+      uuid = bff12c33-d167-4ae9-955e-a535ec312cb1
+      command = "ssh kendall@ethel 'journalctl -u reth.panic-on-insertblockerror.service -n 200 -f'"
+    [[[child7]]]
+      type = VPaned
+      parent = child5
+      order = 1
+      position = 344
+      ratio = 0.5119047619047619
+    [[[terminal8]]]
+      type = Terminal
+      parent = child7
+      order = 0
+      profile = default
+      uuid = 9c0028b1-6fab-4073-b320-5a0abff21218
+      command = "ssh kendall@ethel 'journalctl -u beacon-chain.service -n 200 -f'"
+    [[[terminal9]]]
+      type = Terminal
+      parent = child7
+      order = 1
+      profile = default
+      uuid = f3fc4476-2714-4447-88e8-09fc8c2e1057
+      command = "ssh kendall@ethel 'journalctl -u validator.service -n 200 -f'"
+  [[Ethel-reth.7753.disable-updates-for-long-chains-plus-panic-on-InsertBlockError-5wins]]
+    [[[child0]]]
+      type = Window
+      parent = ""
+      order = 0
+      position = 588:894
+      maximised = False
+      fullscreen = False
+      size = 2818, 1366
+      title = kendall@ethel: ~
+      last_active_term = 375d0cef-6f80-4dd0-a25e-eb8a485ca0a5
+      last_active_window = True
+    [[[child1]]]
+      type = VPaned
+      parent = child0
+      order = 0
+      position = 440
+      ratio = 0.3232916972814107
+    [[[child2]]]
+      type = HPaned
+      parent = child1
+      order = 0
+      position = 1407
+      ratio = 0.5001777461784571
+    [[[terminal3]]]
+      type = Terminal
+      parent = child2
+      order = 0
+      profile = default
+      uuid = 375d0cef-6f80-4dd0-a25e-eb8a485ca0a5
+      command = ssh kendall@ethel
+    [[[terminal4]]]
+      type = Terminal
+      parent = child2
+      order = 1
+      profile = default
+      uuid = 5c2d197e-65db-438f-a17c-855fc0abd838
+      command = ssh kendall@ethel
+    [[[child5]]]
+      type = VPaned
+      parent = child1
+      order = 1
+      position = 239
+      ratio = 0.2609170305676856
+    [[[terminal6]]]
+      type = Terminal
+      parent = child5
+      order = 0
+      profile = default
+      uuid = bff12c33-d167-4ae9-955e-a535ec312cb1
+      command = "ssh kendall@ethel 'journalctl -u reth.7753.disable-updates-for-long-chains-plus-panic-on-InsertBlockError.service -n 200 -f'"
     [[[child7]]]
       type = VPaned
       parent = child5
