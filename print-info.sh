@@ -19,6 +19,6 @@ if [ $(command -v ~/bin/lighthouse) ]; then printf "\n~/bin/lighthouse --version
 printf "\ninxi:\n"; inxi
 printf "\nlsb_release -a:\n"; lsb_release -a
 printf "\ndf -h:\n"; df -h
-if [ $(command -v apt) ]; then printf "\npapt list --upgradeable:\n"; apt list --upgradeable; fi
+if [ $(command -v apt) ]; then printf "\napt list --upgradeable:\n"; apt list --upgradeable; fi
 if [ $(command -v checkupdates) ]; then printf "\ncheckupdates:\n"; checkupdates; fi
 
