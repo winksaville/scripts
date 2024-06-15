@@ -7,7 +7,7 @@ set -Eeuo pipefail
 # Enable debug
 #set -x
 
-echo "\$#=$#"
+#echo "\$#=$#"
 if (( $# < 3 )) then
     filename=$(basename $0)
     echo "Usage: $filename <src_vc> <dest_vc> <other>"
