@@ -12,8 +12,8 @@ if (( $# < 3 )) then
     filename=$(basename $0)
     echo "Usage: $filename <src_vc> <dest_vc> <other>"
     echo "  src_vc:    Source domain assumes port 5062 example: name@computerA"
-    echo "  dest_vc:   Destination domain assumes port 5062 example: name@computerA"
-    echo "  other:     All other parameters passed as is, these could include:"
+    echo "  dest_vc:   Destination domain assumes port 5062 example: name@computerB"
+    echo "  other:     All other parameters are passed as is, these could include:"
     echo "               --validators {all|publlic_keys}"
     echo "               --count <vc_count>"
     echo "             Use 'lighthouse vm move --help' for other parameters"
