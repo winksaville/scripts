@@ -20,7 +20,23 @@ ver=$1
 function get_file_and_extract () {
   file_name=$1
   extension=$2
-  full_file_name=$file_name-x86_64-unknown-linux-gnu$extension
+  tripple=$(gcc -dumpmachine -m)
+  case $tripple in
+    x86_64-linux-gnu)
+      tripple=x86_64-unknown-linux-gnu
+      ;;
+    x86_64-pc-linux-gnu)
+      tripple=x86_64-unknown-linux-gnu
+      ;;
+    aarch64-unknown-linux-gnu)
+      # Good as is tripple=aarch64-unknown-linux-gnu
+      ;;
+    *)
+      echo "Error: unknown architecture tripple of $tripple"
+      exit 1
+      ;;
+  esac
+  full_file_name=$file_name-$tripple$extension
   niceit curl -f -L https://github.com/sigp/lighthouse/releases/download/$ver/$full_file_name -o ~/bin/$full_file_name
   rslt=$?
   #echo "rslt=$rslt"
