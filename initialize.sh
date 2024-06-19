@@ -14,13 +14,14 @@ cp ~/scripts/gitconfig ~/.gitconfig
 cp ~/scripts/vimrc ~/.vimrc
 cp -r ~/scripts/vim ~/.vim/
 cp -r ~/scripts/nvim ~/.config/
+if [ ! $(command -v vi) ]; then sudo ln -s /usr/bin/vim /usr/bin/vi; fi
 
 mkdir -p ~/.config/terminator
 cp ~/scripts/config-terminator-config ~/.config/terminator/config
 
 cp ~/scripts/ssh/* ~/.ssh/
 chmod 600 ~/.ssh/config
-echo "Copy important/git-commit-keys to ~/.ssh/ 'cp ~/<path/to/git-commit-keys/* ~/.ssh/'"
+echo "Copy git-commits-* to ~/.ssh/ such as 'scp wink@3900x:~/.ssh/git-commits-* ~/.ssh/'"
 echo "and update private key permissions 'chmod 600 ~/.ssh/git-commits-wink@saville.com'"
 
 mkdir -p ~/bin

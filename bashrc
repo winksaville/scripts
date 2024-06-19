@@ -71,8 +71,10 @@ source ~/scripts/git-prompt.sh
 source ~/scripts/ninja-bash-completion
 
 # Add Kurtosis completion
-source <(kurtosis completion bash)
-complete -F __start_kurtosis kt
+if [ $(command -v kurtosis) ]; then
+  source <(kurtosis completion bash)
+  complete -F __start_kurtosis kt
+fi
 
 command -v keychain > /dev/null 2>&1 && eval `keychain --nogui --eval id_rsa`
 
