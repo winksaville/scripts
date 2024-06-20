@@ -416,9 +416,12 @@ fi
 
 export GPG_TTY=$(tty)
 
-# From: >https://opensource.com/article/19/4/gpg-subkeys-ssh
-export SSH_AUTH_SOCK=`gpgconf --list-dirs agent-ssh-socket`
-gpgconf --launch gpg-agent
+if [[ $(whoami) != "root" ]]; then
+	# From: >https://opensource.com/article/19/4/gpg-subkeys-ssh
+	export SSH_AUTH_SOCK=`gpgconf --list-dirs agent-ssh-socket`
+	gpgconf --launch gpg-agent
+fi
+
 
 # Use miniconda3 instead of anaconda and default to conda-forge
 # So on Arch Linux install miniconda3 via [aur](https://aur.archlinux.org/packages/miniconda3/)
