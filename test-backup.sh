@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Initialize my working environment
 
 # Enable error options
 set -Eeuo pipefail
@@ -7,37 +6,8 @@ set -Eeuo pipefail
 # Enable debug
 #set -x
 
-mkdir -p ~/.config
-mkdir -p ~/.ssh
-cp ~/scripts/bashrc ~/.bashrc
-cp ~/scripts/bash_profile ~/.bash_profile
-cp ~/scripts/gitconfig ~/.gitconfig
-cp ~/scripts/vimrc ~/.vimrc
-cp -r ~/scripts/vim ~/.vim/
-cp -r ~/scripts/nvim ~/.config/
-if [ ! $(command -v vi) ]; then sudo ln -s /usr/bin/vim /usr/bin/vi; fi
-
-mkdir -p ~/.config/terminator
-cp ~/scripts/config-terminator-config ~/.config/terminator/config
-
-cp ~/scripts/ssh/* ~/.ssh/
-chmod 600 ~/.ssh/config
-echo "Copy git-commits-* to ~/.ssh/ such as 'scp wink@3900x:~/.ssh/git-commits-* ~/.ssh/'"
-echo "and update private key permissions 'chmod 600 ~/.ssh/git-commits-wink@saville.com'"
-
-mkdir -p ~/bin
-cp ~/scripts/update-lighthouse.sh ~/bin/
-cp ~/scripts/remove-all-from-docker.sh ~/bin/
-cp ~/scripts/screensaver-lock-display-off ~/bin/
-cp ~/scripts/mbvc.sh ~/bin/
-cp ~/scripts/missing-failed-success-ratio.sh ~/bin/
-cp ~/scripts/print-info.sh ~/bin/
-cp ~/scripts/backup-file.sh ~/bin/
-
-# Update config files for timeserver and dnsserver
-
-time_server="rpi38"
-dns_server="rpi23"
+time_server="joe"
+dns_server="fred"
 
 backup_copy_if_different() {
 	local src=$1
