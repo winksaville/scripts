@@ -381,6 +381,19 @@ append_path_if_exists $HOME/foss/depot_tools
 
 export CCACHE_DIR=~/.ccache
 
+# Export XAUTHORITY to ensure X11 forwarding works. For instance,
+# this allows `sudo nvim /etc/fstab` to copy/paste from/to the
+# system clipboard on the remote device. If .Xauthority doesn't
+# exist, inform the user to install xorg-xauth.
+if [[ ! -f $HOME/.Xauthority ]]; then
+  echo "Please install xorg-xauth to enable X11 forwarding for sudo."
+  echo "You can also run 'touch $HOME/.Xauthority' to create the file"
+  echo "and avoid seeing this message again or a message from xorg-xauth"
+  echo "when it creates $HOME/.Xauthority if it's absent."
+else
+  export XAUTHORITY=$HOME/.Xauthority
+fi
+
 # Start gpg-agent
 
 if [[ "${machine}" == WSL ]]; then
