@@ -386,12 +386,17 @@ export CCACHE_DIR=~/.ccache
 # system clipboard on the remote device. If .Xauthority doesn't
 # exist, inform the user to install xorg-xauth.
 if [[ ! -f $HOME/.Xauthority ]]; then
-  echo "Please install xorg-xauth to enable X11 forwarding for sudo."
-  echo "You can also run 'touch $HOME/.Xauthority' to create the file"
-  echo "and avoid seeing this message again or a message from xorg-xauth"
-  echo "when it creates $HOME/.Xauthority if it's absent."
+	echo "Please install xorg-xauth to enable X11 forwarding for sudo."
+	echo "You can also run 'touch $HOME/.Xauthority' to create the file"
+	echo "and avoid seeing this message again or a message from xorg-xauth"
+	echo "when it creates $HOME/.Xauthority if it's absent."
 else
-  export XAUTHORITY=$HOME/.Xauthority
+	# There is an .Xauthority but if no XAUTHORITY env variable, export port it.
+	# This happens on headless servers with no Display Manager such as on fred
+	# running, https://github.com/7Ji/orangepi5-archlinuxarm, as a "headless"
+	# server on an OrangePi 5 plus.
+	# test version: [[ -z "$XAUTHORITY" ]] && { export XAUTHORITY="$HOME/.Xauthority"; echo "Added XAUTHORITY=$XAUTHORITY"; } || echo "XAUTHORITY=$XAUTHORITY exists"
+	[[ -z "$XAUTHORITY" ]] && export XAUTHORITY=$HOME/.Xauthority
 fi
 
 # Start gpg-agent
