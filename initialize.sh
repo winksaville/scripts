@@ -22,8 +22,16 @@ cp ~/scripts/config-terminator-config ~/.config/terminator/config
 
 cp ~/scripts/ssh/* ~/.ssh/
 chmod 600 ~/.ssh/config
-echo "Copy git-commits-* to ~/.ssh/ such as 'scp wink@3900x:~/.ssh/git-commits-* ~/.ssh/'"
-echo "and update private key permissions 'chmod 600 ~/.ssh/git-commits-wink@saville.com'"
+
+# Remind user, wink, to get the git-commits-* files for
+# signing commits. These must match what's in scripts/gitconfig
+files=(~/.ssh/git-commits-*)
+if [[ ${#files[@]} == 0 ]]; then
+	echo "Copy git-commits-* to ~/.ssh/ such as 'scp wink@3900x:~/.ssh/git-commits-* ~/.ssh/'"
+	echo "and update private key permissions 'chmod 600 ~/.ssh/git-commits-wink@saville.com'"
+#else
+#	echo "Testing git-commits exist: ${files[@]}"
+fi
 
 mkdir -p ~/bin
 cp ~/scripts/update-lighthouse.sh ~/bin/
@@ -44,7 +52,7 @@ backup_copy_if_different() {
 	local dst=$2
 	#echo src=$src dst=$dst
 	if ! cmp -s "$src" "$dst"; then
-		#echo "DIFFERENT; Backing up and copying $src to $dst"
+		echo "DIFFERENT; Backing up and copying $src to $dst"
 		sudo backup-file.sh $dst
 		sudo cp $src $dst
 	else
