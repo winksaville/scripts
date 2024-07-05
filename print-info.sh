@@ -22,3 +22,16 @@ printf "\ndf -h:\n"; df -h
 if [ $(command -v apt) ]; then printf "\napt list --upgradeable:\n"; apt list --upgradeable; fi
 if [ $(command -v checkupdates) ]; then printf "\ncheckupdates:\n"; checkupdates; fi
 
+# Print uptime=load, free-memory, smartctl=nvme temps and sensors=cpu temps
+printf "\nuptime:\n"
+uptime
+printf "\nfree:\n"
+free -h
+
+# sensors and smartctl need refining as different devices
+# print different stuff, but good enough for now.
+printf "\nsensors:\n"
+sensors | rg "temp|Core|Package"
+printf "\nsmartctl:\n"
+sudo smartctl -a /dev/nvme0n1 | rg "Temperature:|Temp.*Sen"
+
