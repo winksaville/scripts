@@ -29,25 +29,25 @@ Host fred-xfi
   Hostname      71.198.217.87
   User          kendall
   Port          2102
-  IdentityFile  /home/wink/.ssh/id_ed25519
+  IdentityFile  ~/.ssh/id_ed25519
 
 Host 3900x-att
   Hostname      23.119.164.150
   User          wink
   Port          2101
-  IdentityFile  /home/wink/.ssh/id_ed25519
+  IdentityFile  ~/.ssh/id_ed25519
 
 Host rpi23-att
   Hostname      23.119.164.150
   User          wink
   Port          2109
-  IdentityFile  /home/wink/.ssh/id_ed25519
+  IdentityFile  ~/.ssh/id_ed25519
 
 Host defirate
   Hostname      162.243.139.14
   User          runcloud
   Port          22
-  IdentityFile  /home/wink/.ssh/id_ed25519
+  IdentityFile  ~/.ssh/id_ed25519
 
 # Suppress when doing git operations on github:
 #   X11 forwarding request failed on channel 0
