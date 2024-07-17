@@ -43,6 +43,12 @@ Host rpi23-att
   Port          2109
   IdentityFile  /home/wink/.ssh/id_ed25519
 
+Host defirate
+  Hostname      162.243.139.14
+  User          runcloud
+  Port          22
+  IdentityFile  /home/wink/.ssh/id_ed25519
+
 # Suppress when doing git operations on github:
 #   X11 forwarding request failed on channel 0
 Host github.com
