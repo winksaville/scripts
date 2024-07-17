@@ -7,21 +7,20 @@ set -Eeuo pipefail
 # Enable debug
 #set -x
 
-mkdir -p ~/.config
-mkdir -p ~/.ssh
-cp ~/scripts/bashrc ~/.bashrc
-cp ~/scripts/bash_profile ~/.bash_profile
-cp ~/scripts/gitconfig ~/.gitconfig
-cp ~/scripts/vimrc ~/.vimrc
-cp -r ~/scripts/vim ~/.vim/
-cp -r ~/scripts/nvim ~/.config/
-if [ ! $(command -v vi) ]; then sudo ln -s /usr/bin/vim /usr/bin/vi; fi
+# Initialize bash and basic stuff
+source init-bash.sh
 
+# Initialize terminator layouts
 mkdir -p ~/.config/terminator
 cp ~/scripts/config-terminator-config ~/.config/terminator/config
 
+# Initialize ssh config
+mkdir -p ~/.ssh
 cp ~/scripts/ssh/* ~/.ssh/
 chmod 600 ~/.ssh/config
+
+# Initialize gitconfig
+cp ~/scripts/gitconfig ~/.gitconfig
 
 # Remind user, wink, to get the git-commits-* files for
 # signing commits. These must match what's in scripts/gitconfig
