@@ -1,7 +1,7 @@
 #!/bin/bash
 # Written by Wink Saville and ChatGPT4
 
-VERSION="1.0.2"
+VERSION="1.0.3"
 
 # Function to check if a value is a valid integer
 is_integer() {
@@ -16,26 +16,26 @@ run_tests() {
     # Test cases for is_integer function
     # Format: ("value" "expected_result")
     test_cases=(
-        "123 true"          # valid integer
-        "-123 true"         # valid negative integer
-        "+123 true"         # valid positive integer
-        "0 true"            # valid zero
-        "0x1f true"         # valid hexadecimal
-        "0X1F true"         # valid hexadecimal
-        "0755 true"         # valid octal
-        "abc false"         # invalid integer
-        "12abc34 false"     # invalid integer
-        "\"\" false"        # invalid integer (empty string)
-        "@#$%! false"       # invalid special characters
-        "123 456 false"     # invalid (multiple words and numbers)
-        "0xGHI false"       # invalid hexadecimal
-        "00789 false"       # invalid octal (invalid digit)
-        "1- false"          # invalid integer
-        "2+ false"          # invalid integer
-        "1+2 false"         # invalid integer
-        "1-2 false"         # invalid integer
-        "a 1 false"         # invalid integer
-        "2 b false"         # invalid integer
+        "123 true"      # valid integer
+        "-123 true"     # valid negative integer
+        "+123 true"     # valid positive integer
+        "0 true"        # valid zero
+        "0x1f true"     # valid hexadecimal
+        "0X1F true"     # valid hexadecimal
+        "0755 true"     # valid octal
+        "abc false"     # invalid integer
+        "12abc34 false" # invalid integer
+        "\"\" false"    # invalid integer (empty string)
+        "@#$%! false"   # invalid special characters
+        "123 456 false" # invalid (multiple words and numbers)
+        "0xGHI false"   # invalid hexadecimal
+        "00789 false"   # invalid octal (invalid digit)
+        "1- false"      # invalid integer
+        "2+ false"      # invalid integer
+        "1+2 false"     # invalid integer
+        "1-2 false"     # invalid integer
+        "a 1 false"     # invalid integer
+        "2 b false"     # invalid integer
     )
 
     for test_case in "${test_cases[@]}"; do
@@ -46,10 +46,11 @@ run_tests() {
         actual_result=$?
         expected_result_bool=$([[ "$expected_result" == "true" ]] && echo 0 || echo 1)
 
-        if [[ "$actual_result" == "$expected_result_bool" ]]; then
+        if ((actual_result == expected_result_bool)); then
             echo "Test case '$value' PASSED."
         else
-            echo "Test case '$value' FAILED. Expected $expected_result but got $([[ "$actual_result" == 0 ]] && echo true || echo false)."
+            result=$( ((actual_result == 0)) && echo true || echo false)
+            echo "Test case '$value' FAILED. Expected $expected_result but got $result."
         fi
     done
 
@@ -63,7 +64,7 @@ print_usage() {
 }
 
 # Check for correct usage
-if (( $# < 1 || $# > 2 )); then
+if (($# < 1 || $# > 2)); then
     print_usage
     exit 1
 fi
@@ -72,20 +73,20 @@ fi
 VERBOSE="false"
 
 # Parse optional parameters
-while (( $# > 1 )); do
+while (($# > 1)); do
     case "$1" in
-        -v|--verbose)
-            VERBOSE="true"
-            shift
-            ;;
-        -q|--quiet)
-            VERBOSE="false"
-            shift
-            ;;
-        *)
-            print_usage
-            exit 1
-            ;;
+    -v | --verbose)
+        VERBOSE="true"
+        shift
+        ;;
+    -q | --quiet)
+        VERBOSE="false"
+        shift
+        ;;
+    *)
+        print_usage
+        exit 1
+        ;;
     esac
 done
 
@@ -99,7 +100,7 @@ fi
 is_integer "$1"
 result=$?
 if [[ "$VERBOSE" == "true" ]]; then
-    if (( result == 0 )); then
+    if ((result == 0)); then
         echo "$1 is a valid integer."
     else
         echo "$1 is not a valid integer."
