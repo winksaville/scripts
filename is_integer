@@ -1,7 +1,7 @@
 #!/bin/bash
 # Written by Wink Saville and ChatGPT4
 
-VERSION="1.0.1"
+VERSION="1.0.2"
 
 # Function to check if a value is a valid integer
 is_integer() {
@@ -69,17 +69,17 @@ if (( $# < 1 || $# > 2 )); then
 fi
 
 # Default verbose flag to false
-VERBOSE=false
+VERBOSE="false"
 
 # Parse optional parameters
 while (( $# > 1 )); do
-    case $1 in
+    case "$1" in
         -v|--verbose)
-            VERBOSE=true
+            VERBOSE="true"
             shift
             ;;
         -q|--quiet)
-            VERBOSE=false
+            VERBOSE="false"
             shift
             ;;
         *)
@@ -98,7 +98,7 @@ fi
 # Check if the single parameter is a valid integer
 is_integer "$1"
 result=$?
-if [[ $VERBOSE == true ]]; then
+if [[ "$VERBOSE" == "true" ]]; then
     if (( result == 0 )); then
         echo "$1 is a valid integer."
     else
