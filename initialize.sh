@@ -2,7 +2,14 @@
 # Initialize my working environment
 
 # Enable error options
-set -Eeuo pipefail
+#  -E -> inherits ERR trap
+#  -u -> treat unset variables as an error
+#  -o pipefail -> return code of the first failed command in a pipeline
+#
+# Previously I used -e but this caluses nvoked commands that return with
+# non-zero exit codes fail immediately and silently.
+# I.e. `systemctl is-active xxx``
+set -Euo pipefail
 
 # Enable debug
 #set -x
@@ -116,4 +123,28 @@ if [[ "$HOSTNAME" == "$dns_server" ]]; then
 elif [[ -f $dst ]]; then
 	echo "UNEXPECTED: Has dnsmasq.conf but this isn't designated as dns_server!"
 fi
+
+service-is-active() {
+	systemctl is-active --quiet "$1"
+	#local r=$?
+	#echo "service-is-active $1: $r"
+	#return $r
+	return $? # comment this line and uncomment the next lines for debug
+}
+
+# Update vnstat.service
+service=vnstat.service
+dst_file=/etc/vnstat.conf
+src_file=~/scripts/vnstat.conf
+
+if [[ -f $dst_file ]] && service-is-active $service; then
+	#echo "EXPECTED: $dst_file exists and $service is active"
+	backup_copy_if_different $src_file $dst_file
+else
+	echo "UNEXPECTED: $dst_file does not exist or $service is not active or not installed"
+	exit 1
+fi
+
+exit 0
+
 
