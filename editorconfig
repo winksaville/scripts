@@ -1,0 +1,17 @@
+# See https://editorconfig.org/
+#
+# ATM this file is used by shfmt see man page,
+# man shfmt` for docs. Sources for shfmt are
+# here, https://github.com/mvdan/sh
+
+# Files ending in '.sh'
+[*.sh]
+indent_style = space
+indent_size = 4
+
+# Files identified by shfmt by looking
+# the shebang in the first line
+[[bash]]
+indent_style = space
+indent_size = 4
+
