@@ -98,18 +98,25 @@ else
 fi
 
 
-# Update /etc/resolv.conf
-if [[ -f /etc/resolv.conf ]]; then
-	dst="/etc/resolv.conf"
-else
-	echo "FATAL: Weird, there is no resolv.conf"
-	exit 1
-fi
-if [[ "$HOSTNAME" == "$dns_server" ]]; then
-	backup_copy_if_different ~/scripts/resolv.conf.use-on-dns_server $dst
-else
-	backup_copy_if_different ~/scripts/resolv.conf.use-on-other $dst
-fi
+#The two resolv.conf.use-on-* are only applicable to the ATT network,
+#I need to work out a better technique. The main thing I want to do is
+#that the local computer needs to be able to resolve device names on
+#the local lan.
+#
+#Maybe all I need is `search lan`?
+
+## Update /etc/resolv.conf
+#if [[ -f /etc/resolv.conf ]]; then
+#	dst="/etc/resolv.conf"
+#else
+#	echo "FATAL: Weird, there is no resolv.conf"
+#	exit 1
+#fi
+#if [[ "$HOSTNAME" == "$dns_server" ]]; then
+#	backup_copy_if_different ~/scripts/resolv.conf.use-on-dns_server $dst
+#else
+#	backup_copy_if_different ~/scripts/resolv.conf.use-on-other $dst
+#fi
 
 # Update dnsmasq.conf on dns_server only
 dst=/etc/dnsmasq.conf
