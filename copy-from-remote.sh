@@ -17,12 +17,13 @@ fi
 # Assign command-line arguments to variables
 SOURCE=$1
 DESTINATION=$2
+LOG_FILE=~/rsync-log
 
 # Perform the initial rsync transfer with checksum verification and proper symlink handling
-rsync -aHAXU --checksum --progress --links --copy-unsafe-links $SOURCE $DESTINATION
+rsync -aHAXU --log-file=$LOG_FILE-xfer.txt --checksum --progress --links --copy-unsafe-links $SOURCE $DESTINATION
 
 # Perform a dry-run with checksums to verify the transfer
-rsync -aHAXU --checksum --dry-run --progress --links --copy-unsafe-links $SOURCE $DESTINATION
+rsync -aHAXU --log-file=$LOG_FILE-verify.txt --checksum --dry-run --progress --links --copy-unsafe-links $SOURCE $DESTINATION
 
 # Check the result of the dry-run
 if [ $? -eq 0 ]; then
