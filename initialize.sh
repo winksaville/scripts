@@ -49,6 +49,7 @@ cp ~/scripts/print-info.sh ~/bin/
 cp ~/scripts/backup-file.sh ~/bin/
 cp ~/scripts/vm-move.sh ~/bin/
 cp ~/scripts/temp-info.sh ~/bin/
+cp ~/scripts/copy-from-remote.sh ~/bin/
 
 # Update config files for timeserver and dnsserver
 
