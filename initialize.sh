@@ -48,6 +48,7 @@ cp ~/scripts/missing-failed-success-ratio.sh ~/bin/
 cp ~/scripts/print-info.sh ~/bin/
 cp ~/scripts/backup-file.sh ~/bin/
 cp ~/scripts/vm-move.sh ~/bin/
+cp ~/scripts/temp-info.sh ~/bin/
 
 # Update config files for timeserver and dnsserver
 
